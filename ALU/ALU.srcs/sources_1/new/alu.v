@@ -40,61 +40,61 @@ always @(data_a or data_b or operation) begin
             zero = 0;
             signo = 0;
             result = data_a + data_b;
-            carry = (result == 5'b10000);
+            carry = (result == 5'b1000);
             zero = (result == 5'b0);
             result = result[number_bus_output-1:0];
             end
-//        SUB: begin
-//            carry = 0;
-//            zero = 0;
-//            signo = 0;
-//            if(data_b > data_a) begin
-//               signo = 1;
-//               result = data_b - data_a;
-//            end
-//            else if(data_b < data_a) begin
-//                signo = 0;
-//                result = data_a - data_b;
-//            end
-//            zero = (result == 5'b0);
-//            result = result[number_bus_output-1:0];
-//            end
-//        AND: begin
-//            carry = 0;
-//            zero = 0;
-//            signo = 0;
-//            result = data_a & data_b;
-//            end
-//        OR: begin
-//            carry = 0;
-//            zero = 0;
-//            signo = 0;
-//            result = data_a | data_b;
-//            end
-//        XOR: begin
-//            carry = 0;
-//            zero = 0;
-//            signo = 0;
-//            result = data_a ^ data_b;
-//            end
-//        SRA: begin
-//            carry = 0;
-//            zero = 0;
-//            signo = 0;
-//            result = data_a >>> data_b;
-//            end
-//        SRL: begin
-//            carry = 0;
-//            zero = 0;
-//            signo = 0;
-//            result = data_a << data_b;
-//            end
-//        NOR: begin
-//            carry = 0;
-//            zero = 0;
-//            signo = 0;
-//            result =~(data_a | data_b);
-//            end
+        SUB: begin
+            carry = 0;
+            zero = 0;
+            signo = 0;
+            if(data_b > data_a) begin
+               signo = 1;
+               result = data_b - data_a;
+            end
+            else if(data_b < data_a) begin
+                signo = 0;
+                result = data_a - data_b;
+            end
+            zero = (result == 5'b0);
+            result = result[number_bus_output-1:0];
+            end
+        AND: begin
+            carry = 0;
+            zero = 0;
+            signo = 0;
+            result = data_a & data_b;
+            end
+        OR: begin
+            carry = 0;
+            zero = 0;
+            signo = 0;
+            result = data_a | data_b;
+            end
+        XOR: begin
+            carry = 0;
+            zero = 0;
+            signo = 0;
+            result = data_a ^ data_b;
+            end
+        SRA: begin
+            carry = 0;
+            zero = 0;
+            signo = 0;
+            result = data_a >>> data_b;
+            end
+        SRL: begin
+            carry = 0;
+            zero = 0;
+            signo = 0;
+            result = data_a << data_b;
+            end
+        NOR: begin
+            carry = 0;
+            zero = 0;
+            signo = 0;
+            result =~(data_a | data_b);
+            end
         default: begin
             result = 0;
             carry = 0;

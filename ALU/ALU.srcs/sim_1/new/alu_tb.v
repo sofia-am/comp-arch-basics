@@ -71,6 +71,11 @@ alu alu0(
     .data_a(data_a),
     .data_b(data_b),
     .operation(operation),
+    /*
+    .o_result(result),
+    .o_carry(carry),
+    .o_zero(zero),
+    .o_signo(signo)*/
     .result(result),
     .carry(carry),
     .zero(zero),

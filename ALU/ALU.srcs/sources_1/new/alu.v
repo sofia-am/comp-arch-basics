@@ -25,19 +25,19 @@ module alu
      )
     (   input wire [number_bus_input-1:0] data_a, [number_bus_input-1:0] data_b,
         input wire [number_bus_operation-1:0] operation,
-        output reg [number_bus_output-1:0] result,
-        output reg carry, //si no se define nada, es de 1 bit
-        output reg zero,
-        output reg signo,
+        input wire clock,
         output wire [number_bus_output-1:0] o_result,
         output wire o_carry,
         output wire o_zero,
         output wire o_signo
     );
-    
-reg [number_bus_output:0] result_aux;
 
-always @(data_a or data_b or operation) begin
+reg [number_bus_output-1:0] result;
+reg carry; //si no se define nada, es de 1 bit
+reg zero;
+reg signo;
+
+always @(posedge clock) begin
     case(operation)
         ADD: begin
             carry = 1'b0;
@@ -110,11 +110,9 @@ always @(data_a or data_b or operation) begin
             signo = 1'b0;
             end
     endcase
-    /*
-    assign result = o_result;
-    assign carry = o_carry;
-    assign zero = o_zero;
-    assign signo = o_signo;
-    */
 end
+    assign o_result = result;
+    assign o_carry = carry;
+    assign o_zero = zero;
+    assign o_signo = signo;
 endmodule

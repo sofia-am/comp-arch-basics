@@ -15,55 +15,66 @@ parameter number_bus_input = 4;
 parameter number_bus_output = 5;
 parameter number_bus_operation = 6;
 
+//inputs
 reg [number_bus_input-1:0] data_a, data_b;
 reg [number_bus_operation-1:0] operation;
-wire [number_bus_output-1:0] result;
-wire carry;
-wire zero;
-wire signo;
+reg clock;
+//outputs
+//wire [number_bus_output-1:0] result;
+wire [number_bus_output-1:0]o_result;
+wire o_carry;
+wire o_zero;
+wire o_signo;
 
 initial
 begin
+    clock = 1'b1;
     data_a=1;
     data_b=8'b1111;
     operation=32;
-    #10
+end
+always begin
+#1
+    clock = ~clock;
+end
+always begin
+    #2
     data_a=5;
     data_b=8'b0011;
     operation=32;
-    #10
+    #2
     data_a=3;
     data_b=8;
     operation=34;
-    #10
+    #2
     data_a=10;
     data_b=4;
     operation=34;
-    #10
+    #2
     data_a=5;
     data_b=3;
     operation=36;
-    #10
+    #2
     data_a=5;
     data_b=3;
     operation=37;
-    #10
+    #2
     data_a=5;
     data_b=3;
     operation=38;
-    #10
+    #2
     data_a=5;
     data_b=3;
     operation=3;
-    #10
+    #2
     data_a=5;
     data_b=3;
     operation=2;
-    #10
+    #2
     data_a=5;
     data_b=3;
     operation=39;
-    #10
+    #2
     $finish;
 end
 
@@ -71,14 +82,14 @@ alu alu0(
     .data_a(data_a),
     .data_b(data_b),
     .operation(operation),
-    /*
-    .o_result(result),
-    .o_carry(carry),
-    .o_zero(zero),
-    .o_signo(signo)*/
+    .clock(clock),
+    .o_result(o_result),
+    .o_carry(o_carry),
+    .o_zero(o_zero),
+    .o_signo(o_signo)/*
     .result(result),
     .carry(carry),
     .zero(zero),
-    .signo(signo)
+    .signo(signo)*/
 );
 endmodule

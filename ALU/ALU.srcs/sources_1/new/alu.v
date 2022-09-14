@@ -9,10 +9,45 @@
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 
+module switches
+    #(  parameter DATA_SIZE = 4,
+        parameter OPCODE_SIZE = 6,
+        parameter SWITCHES = 6
+    )(
+        input wire [SWITCHES-1:0] numero,
+        input wire load_1, //dato a
+        input wire load_2, //dato b
+        input wire load_3, //opcode
+        input wire clock,
+        output wire [DATA_SIZE-1:0] o_dato_a,
+        output wire [DATA_SIZE-1:0] o_dato_b,
+        output wire [OPCODE_SIZE-1:0] o_opcode
+    );
+
+reg dato_a;
+reg dato_b;
+reg opcode;
+
+always @(posedge clock) begin
+    if(load_1) begin
+        dato_a = numero;
+    end
+    else if(load_2) begin
+        dato_b = numero;
+    end
+    else if(load_3) begin
+        opcode = numero;
+    end
+end
+    assign o_dato_a = dato_a;
+    assign o_dato_b = dato_b;
+    assign o_opcode = opcode;    
+endmodule
+
 module alu
-    #(  parameter number_bus_input = 4,
-        parameter number_bus_output = 5,
-        parameter number_bus_operation = 6,
+    #(  parameter INPUT_SIZE = 4,
+        parameter OUTPUT_SIZE = 5,
+        parameter OPCODE_SIZE = 6,
         
         parameter ADD = 6'b100000,
         parameter SUB = 6'b100010,
@@ -23,16 +58,16 @@ module alu
         parameter SRL = 6'b000010,
         parameter NOR = 6'b100111
      )
-    (   input wire [number_bus_input-1:0] data_a, [number_bus_input-1:0] data_b,
-        input wire [number_bus_operation-1:0] operation,
+    (   input wire [INPUT_SIZE-1:0] data_a, [INPUT_SIZE-1:0] data_b,
+        input wire [OPCODE_SIZE-1:0] operation,
         input wire clock,
-        output wire [number_bus_output-1:0] o_result,
+        output wire [OUTPUT_SIZE-1:0] o_result,
         output wire o_carry,
         output wire o_zero,
         output wire o_signo
     );
 
-reg [number_bus_output-1:0] result;
+reg [OUTPUT_SIZE-1:0] result;
 reg carry; //si no se define nada, es de 1 bit
 reg zero;
 reg signo;
@@ -44,9 +79,9 @@ always @(posedge clock) begin
             zero = 1'b0;
             signo = 1'b0;
             result = data_a + data_b;
-            carry = (result[number_bus_output-1] == 1'b1);
-            zero = (result == {number_bus_output{1'b0}});
-            result = result[number_bus_output-1:0];
+            carry = (result[OUTPUT_SIZE-1] == 1'b1);
+            zero = (result == {OUTPUT_SIZE{1'b0}});
+            result = result[OUTPUT_SIZE-1:0];
             end
         SUB: begin
             carry = 1'b0;
@@ -62,10 +97,10 @@ always @(posedge clock) begin
             end
             else if(data_b == data_a) begin
                signo = 1'b0;
-               result = {number_bus_input{1'b0}};
+               result = {INPUT_SIZE{1'b0}};
             end
             zero = (result == 5'b0);
-            result = result[number_bus_output-1:0];
+            result = result[OUTPUT_SIZE-1:0];
             end
         AND: begin
             carry = 1'b0;
@@ -104,7 +139,7 @@ always @(posedge clock) begin
             result =~(data_a | data_b);
             end
         default: begin
-            result = {number_bus_input{1'b0}};
+            result = {INPUT_SIZE{1'b0}};
             carry = 1'b0;
             zero = 1'b0;
             signo = 1'b0;

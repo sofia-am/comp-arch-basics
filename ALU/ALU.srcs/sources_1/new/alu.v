@@ -11,7 +11,7 @@
 
 module alu
     #(  parameter INPUT_SIZE = 4,
-        parameter OUTPUT_SIZE = 5,
+        parameter OUTPUT_SIZE = 4,
         parameter OPCODE_SIZE = 6    
      )
     (   

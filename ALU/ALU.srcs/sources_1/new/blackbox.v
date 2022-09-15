@@ -24,7 +24,7 @@ module black_box
     #(  parameter DATA_SIZE = 4,
         parameter OPCODE_SIZE = 6,
         parameter SWITCHES = 6,
-        parameter OUTPUT_SIZE = 5
+        parameter OUTPUT_SIZE = 4
     )(
         input wire [SWITCHES-1:0] numero,
         input wire load_1, //dato a

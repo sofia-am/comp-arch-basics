@@ -15,7 +15,8 @@ module alu
         parameter OPCODE_SIZE = 6    
      )
     (   
-        input wire [INPUT_SIZE-1:0] data_a, [INPUT_SIZE-1:0] data_b,
+        input wire [INPUT_SIZE-1:0] data_a,
+        input wire [INPUT_SIZE-1:0] data_b,
         input wire [OPCODE_SIZE-1:0] opcode,
         input wire clock,
         output wire [OUTPUT_SIZE-1:0] o_result,
@@ -23,13 +24,6 @@ module alu
         output wire o_zero,
         output wire o_signo
     );
-
-switches entradas(
-    .clock(clock),
-    .o_dato_a(data_a),
-    .o_dato_b(data_b),
-    .o_opcode(opcode)
-);
 
 //parámetros para facilitar la comprensión de los switch cases
 localparam ADD = 6'b100000;

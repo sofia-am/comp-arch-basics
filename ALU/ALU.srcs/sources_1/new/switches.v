@@ -24,6 +24,19 @@ module switches
         output wire [OPCODE_SIZE-1:0] o_opcode
     );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 reg aux_dato_a;
 reg aux_dato_b;
 reg aux_opcode;

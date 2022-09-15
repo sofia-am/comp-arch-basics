@@ -1,24 +1,13 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 09/14/2022 09:33:19 PM
-// Design Name: 
-// Module Name: main
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
+// Module Name: blackbox
+// Project Name: TP1 ALU - Arquitectura de Computadoras
+// Authors: Amallo, Sofia - Raya, Matias
+// Target Devices: Basys2/3
 // Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
+// Implementacion de una ALU basica con un testbench
 // Revision 0.01 - File Created
-// Additional Comments:
-// 
 //////////////////////////////////////////////////////////////////////////////////
-
 
 module black_box
     #(  parameter DATA_SIZE = 4,

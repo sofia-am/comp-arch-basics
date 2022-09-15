@@ -5,7 +5,7 @@
 // Authors: Amallo, Sofia - Raya, Matias
 // Target Devices: Basys2/3
 // Description: 
-// Implementaci?n de una ALU b?sica con un testbench
+// Implementacion de una ALU basica con un testbench
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 

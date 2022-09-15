@@ -1,14 +1,13 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Module Name: alu
+// Module Name: alu_tb
 // Project Name: TP1 ALU - Arquitectura de Computadoras
 // Authors: Amallo, Sofia - Raya, Matias
 // Target Devices: Basys2/3
 // Description: 
-// Implementaci�n de una ALU b�sica con un testbench
+// Implementacion de una ALU basica con un testbench
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
-
 
 module alu_tb( );
 parameter number_bus_input = 4;
@@ -16,15 +15,14 @@ parameter number_bus_output = 5;
 parameter number_bus_operation = 6;
 
 //inputs
-//reg [number_bus_input-1:0] data_a, data_b;
-//reg [number_bus_operation-1:0] operation;
+
 reg clock;
 reg load_1;
 reg load_2;
 reg load_3;
 reg [number_bus_operation-1:0] numeros;
+
 //outputs
-//wire [number_bus_output-1:0] result;
 wire [number_bus_output-1:0] o_result;
 wire o_carry;
 wire o_zero;
@@ -44,9 +42,6 @@ begin
     clock = 1'b1;
     numeros = 32;
     load_3 = 1;
-    //data_a=1;
-    //data_b=8'b1111;
-    //operation=32;
 end
 always begin
 #1
@@ -102,7 +97,7 @@ always begin
     $finish;
 end
 
-alu alu0(
+/*alu alu0(
     .numeros(numeros),
     .load_1(load_1),
     .load_2(load_2),
@@ -111,10 +106,6 @@ alu alu0(
     .o_result(o_result),
     .o_carry(o_carry),
     .o_zero(o_zero),
-    .o_signo(o_signo)/*
-    .result(result),
-    .carry(carry),
-    .zero(zero),
-    .signo(signo)*/
-);
+    .o_signo(o_signo)
+);*/
 endmodule

@@ -10,101 +10,85 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module alu
-    #(  parameter number_bus_input = 4,
-        parameter number_bus_output = 5,
-        parameter number_bus_operation = 6,
-        
-        parameter ADD = 6'b100000,
-        parameter SUB = 6'b100010,
-        parameter AND = 6'b100100,
-        parameter OR  = 6'b100101,
-        parameter XOR = 6'b100110,
-        parameter SRA = 6'b000011,
-        parameter SRL = 6'b000010,
-        parameter NOR = 6'b100111
+    #(  parameter INPUT_SIZE = 4,
+        parameter OUTPUT_SIZE = 5,
+        parameter OPCODE_SIZE = 6    
      )
-    (   input wire [number_bus_input-1:0] data_a, [number_bus_input-1:0] data_b,
-        input wire [number_bus_operation-1:0] operation,
+    (   
+        input wire [INPUT_SIZE-1:0] data_a,
+        input wire [INPUT_SIZE-1:0] data_b,
+        input wire [OPCODE_SIZE-1:0] opcode,
         input wire clock,
-        output wire [number_bus_output-1:0] o_result,
+        output wire [OUTPUT_SIZE-1:0] o_result,
         output wire o_carry,
         output wire o_zero,
         output wire o_signo
     );
 
-reg [number_bus_output-1:0] result;
+//parámetros para facilitar la comprensión de los switch cases
+localparam ADD = 6'b100000;
+localparam SUB = 6'b100010;
+localparam AND = 6'b100100;
+localparam OR  = 6'b100101;
+localparam XOR = 6'b100110;
+localparam SRA = 6'b000011;
+localparam SRL = 6'b000010;
+localparam NOR = 6'b100111;
+
+reg [OUTPUT_SIZE-1:0] result = {OUTPUT_SIZE{1'b0}};
 reg carry; //si no se define nada, es de 1 bit
 reg zero;
 reg signo;
+ 
+always @(posedge clock) begin   
 
-always @(posedge clock) begin
-    case(operation)
+    carry = 1'b0;
+    zero = 1'b0;
+    signo = 1'b0;
+    
+    case(opcode)
         ADD: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             result = data_a + data_b;
-            carry = (result[number_bus_output-1] == 1'b1);
-            zero = (result == {number_bus_output{1'b0}});
-            result = result[number_bus_output-1:0];
+            carry = (result[OUTPUT_SIZE-1] == 1'b1);
+            zero = (result == {OUTPUT_SIZE{1'b0}});
+            result = result[OUTPUT_SIZE-1:0];
             end
         SUB: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             if(data_b > data_a) begin
-               signo = 1;
-               result = data_b - data_a;
+                signo = 1;
+                result = data_b - data_a;
             end
             else if(data_b < data_a) begin
                 signo = 1'b0;
                 result = data_a - data_b;
             end
             else if(data_b == data_a) begin
-               signo = 1'b0;
-               result = {number_bus_input{1'b0}};
+                signo = 1'b0;
+                result = {INPUT_SIZE{1'b0}};
             end
             zero = (result == 5'b0);
-            result = result[number_bus_output-1:0];
+            result = result[OUTPUT_SIZE-1:0];
             end
         AND: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             result = data_a & data_b;
             end
         OR: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             result = data_a | data_b;
             end
         XOR: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             result = data_a ^ data_b;
             end
         SRA: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             result = data_a >>> data_b;
             end
         SRL: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             result = data_a << data_b;
             end
         NOR: begin
-            carry = 1'b0;
-            zero = 1'b0;
-            signo = 1'b0;
             result =~(data_a | data_b);
             end
         default: begin
-            result = {number_bus_input{1'b0}};
+            result = {INPUT_SIZE{1'b0}};
             carry = 1'b0;
             zero = 1'b0;
             signo = 1'b0;

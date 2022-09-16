@@ -52,7 +52,7 @@ always @(posedge clock) begin
         ADD: begin
             aux = data_a + data_b;
             carry = aux[OUTPUT_SIZE];
-            zero = (aux == {OUTPUT_SIZE{1'b0}});
+            zero = (aux[OUTPUT_SIZE-1:0] == {OUTPUT_SIZE{1'b0}});
             result = aux[OUTPUT_SIZE-1:0];
             end
         SUB: begin

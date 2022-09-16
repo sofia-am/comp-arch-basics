@@ -36,12 +36,13 @@ localparam SRL = 6'b000010;
 localparam NOR = 6'b100111;
 
 reg [OUTPUT_SIZE-1:0] result = {OUTPUT_SIZE{1'b0}};
+reg [OUTPUT_SIZE:0] aux;
 reg carry; //si no se define nada, es de 1 bit
 reg zero;
 reg signo;
  
-//always @(posedge clock) begin
-always @(data_a or data_b or opcode) begin   
+always @(posedge clock) begin
+//always @(data_a or data_b or opcode) begin   
 
     carry = 1'b0;
     zero = 1'b0;
@@ -49,10 +50,10 @@ always @(data_a or data_b or opcode) begin
     
     case(opcode)
         ADD: begin
-            result = data_a + data_b;
-            carry = (result[OUTPUT_SIZE-1] == 1'b1);
-            zero = (result == {OUTPUT_SIZE{1'b0}});
-            result = result[OUTPUT_SIZE-1:0];
+            aux = data_a + data_b;
+            carry = aux[OUTPUT_SIZE];
+            zero = (aux == {OUTPUT_SIZE{1'b0}});
+            result = aux[OUTPUT_SIZE-1:0];
             end
         SUB: begin
             if(data_b > data_a) begin

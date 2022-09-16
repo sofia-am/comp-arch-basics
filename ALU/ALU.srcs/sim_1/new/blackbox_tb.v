@@ -39,7 +39,7 @@ localparam NOR = 6'b100111;
 
 initial begin
     clock = 1'b1;
-    numero = 32;
+    numero = 0;
     load_3 =1;
 end
 
@@ -50,13 +50,39 @@ end
 always begin
     #2
     load_3 = 1'b0;
+    
+    //primera suma
     #2
     numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
     load_2 = 1'b1;
     #2
     load_2 = 1'b0;
     #2
-    numero = 6'd2; //cargo b con un 2
+    numero = ADD;
+    load_3 = 1'b1; //cargo opcode (suma)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda suma
+    #2
+    numero = 15; //cargo a con un 15
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = 1; //cargo b con un 2
     load_1 = 1'b1;
     #2
     load_1 = 1'b0;
@@ -65,8 +91,65 @@ always begin
     load_3 = 1'b1; //cargo opcode (suma)
     #2
     load_3 = 1'b0;
-    #2
     
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+   
+   ///////////////////////////////////////////////////////////////////////////////////
+   
+    //primera resta
+    #2
+    numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = SUB;
+    load_3 = 1'b1; //cargo opcode (resta)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda resta
+    #2
+    numero = 15; //cargo a con un 15
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 1; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = SUB;
+    load_3 = 1'b1; //cargo opcode (resta)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    ///////////////////////////////////////////////////////////////////////////////////
     $finish;
 end    
 

@@ -82,7 +82,7 @@ always begin
     #2
     load_2 = 1'b0;
     #2
-    numero = 1; //cargo b con un 2
+    numero = 1; //cargo b con un 1
     load_1 = 1'b1;
     #2
     load_1 = 1'b0;
@@ -132,7 +132,32 @@ always begin
     #2
     load_1 = 1'b0;
     #2
-    numero = 1; //cargo b con un 2
+    numero = 1; //cargo b con un 1
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = SUB;
+    load_3 = 1'b1; //cargo opcode (resta)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    
+    //tercera resta
+    #2
+    numero = 15; //cargo a con un 15
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 15; //cargo b con un 15
     load_2 = 1'b1;
     #2
     load_2 = 1'b0;

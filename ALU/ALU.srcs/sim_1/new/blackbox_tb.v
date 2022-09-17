@@ -28,14 +28,14 @@ wire o_zero;
 wire o_signo;
 
 //parameter local
-localparam ADD = 6'b100000;
-localparam SUB = 6'b100010;
-localparam AND = 6'b100100;
-localparam OR  = 6'b100101;
-localparam XOR = 6'b100110;
-localparam SRA = 6'b000011;
-localparam SRL = 6'b000010;
-localparam NOR = 6'b100111;
+localparam ADD = 6'b100000; //32
+localparam SUB = 6'b100010; //34
+localparam AND = 6'b100100; //36
+localparam OR  = 6'b100101; //37
+localparam XOR = 6'b100110; //38
+localparam SRA = 6'b000011; //3
+localparam SRL = 6'b000010; //2
+localparam NOR = 6'b100111; //39
 
 initial begin
     clock = 1'b1;
@@ -175,6 +175,304 @@ always begin
     load_3 = 1'b0;
     
     ///////////////////////////////////////////////////////////////////////////////////
+    
+    //primer and
+    #2
+    numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = AND;
+    load_3 = 1'b1; //cargo opcode (and)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda and
+    #2
+    numero = 7; //cargo a con un 7
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = AND;
+    load_3 = 1'b1; //cargo opcode (and)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    //primer or
+    #2
+    numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = OR;
+    load_3 = 1'b1; //cargo opcode (or)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda or
+    #2
+    numero = 7; //cargo a con un 7
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = OR;
+    load_3 = 1'b1; //cargo opcode (or)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    //primer xor
+    #2
+    numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = XOR;
+    load_3 = 1'b1; //cargo opcode (xor)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda xor
+    #2
+    numero = 7; //cargo a con un 7
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = XOR;
+    load_3 = 1'b1; //cargo opcode (xor)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    //primer sra
+    #2
+    numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = SRA;
+    load_3 = 1'b1; //cargo opcode (sra)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda sra
+    #2
+    numero = 7; //cargo a con un 7
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = SRA;
+    load_3 = 1'b1; //cargo opcode (sra)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    //primer srl
+    #2
+    numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = SRL;
+    load_3 = 1'b1; //cargo opcode (srl)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda srl
+    #2
+    numero = 7; //cargo a con un 7
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = SRL;
+    load_3 = 1'b1; //cargo opcode (srl)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    //primer nor
+    #2
+    numero = 1'b1; //cargo a con un 1
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+        numero = NOR;
+    load_3 = 1'b1; //cargo opcode (nor)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
+    
+    //segunda nor
+    #2
+    numero = 7; //cargo a con un 7
+    load_1 = 1'b1;
+    #2
+    load_1 = 1'b0;
+    #2
+    numero = 2; //cargo b con un 2
+    load_2 = 1'b1;
+    #2
+    load_2 = 1'b0;
+    #2
+    numero = NOR;
+    load_3 = 1'b1; //cargo opcode (nor)
+    #2
+    load_3 = 1'b0;
+    
+    //se limpia opcode
+    #2
+    numero = 0;
+    load_3 =1;
+    #2
+    load_3 = 1'b0;
     $finish;
 end    
 

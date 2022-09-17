@@ -24,9 +24,9 @@ module switches
         output reg [DATA_SIZE-1:0] o_dato_b,
         output reg [OPCODE_SIZE-1:0] o_opcode
         ///////////////////////////////////////////////////////////////////////////////////
-        /*output wire [DATA_SIZE-1:0] o_dato_a,
-        output wire [DATA_SIZE-1:0] o_dato_b,
-        output wire [OPCODE_SIZE-1:0] o_opcode*/
+        //output wire [DATA_SIZE-1:0] dato_a,
+        //output wire [DATA_SIZE-1:0] dato_b,
+        //output wire [OPCODE_SIZE-1:0] opcode
     );
 
 reg aux_dato_a;
@@ -39,16 +39,16 @@ always @(posedge clock) begin
         o_dato_a = numero;
     end
     else if(load_2) begin
-//        aux_dato_b = numero;
+        //aux_dato_b = numero;
         o_dato_b = numero;
     end
     else if(load_3) begin
-//        aux_opcode = numero;
+        //aux_opcode = numero;
         o_opcode = numero;
     end
 end
   
-//    assign o_dato_a = aux_dato_a;
-//    assign o_dato_b = aux_dato_b;
-//    assign o_opcode = aux_opcode;    
+    //assign o_dato_a = aux_dato_a;
+    //assign o_dato_b = aux_dato_b;
+    //assign o_opcode = aux_opcode;    
 endmodule

@@ -2,8 +2,8 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Tue Sep 20 19:30:57 2022
-# Process ID: 740
+# Start of session at: Tue Sep 20 20:46:44 2022
+# Process ID: 11268
 # Current directory: C:/Users/matia/TP-ARQUI/ALU/ALU.runs/impl_1
 # Command line: vivado.exe -log black_box.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source black_box.tcl -notrace
 # Log file: C:/Users/matia/TP-ARQUI/ALU/ALU.runs/impl_1/black_box.vdi

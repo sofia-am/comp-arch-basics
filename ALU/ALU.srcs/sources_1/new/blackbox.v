@@ -19,6 +19,7 @@ module black_box
         input wire load_1, //dato a
         input wire load_2, //dato b
         input wire load_3, //opcode
+        input wire load_4, //reset
         input wire clock,
         output wire [OUTPUT_SIZE-1:0] o_result,
         output wire o_carry,
@@ -36,6 +37,7 @@ switches inputs( //instancio un modulo inputs con las mismas entradas que main
     .load_1(load_1),
     .load_2(load_2),
     .load_3(load_3),
+    .load_4(load_4),
     .o_dato_a(dato_a),
     .o_dato_b(dato_b),
     .o_opcode(opcode)

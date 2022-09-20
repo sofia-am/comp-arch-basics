@@ -18,6 +18,7 @@ module switches
         input wire load_1, //dato a
         input wire load_2, //dato b
         input wire load_3, //opcode
+        input wire load_4, //reset
         input wire clock,
         ///////////////////////////////////////////////////////////////////////////////////
         output reg [DATA_SIZE-1:0] o_dato_a,
@@ -45,6 +46,11 @@ always @(posedge clock) begin
     else if(load_3) begin
         //aux_opcode = numero;
         o_opcode = numero;
+    end
+    else if(load_4) begin
+        o_dato_a = 0;
+        o_dato_b = 0;
+        o_opcode = 0;
     end
 end
   

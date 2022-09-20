@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Tue Sep 20 17:32:39 2022
-| Host         : DESKTOP-058OJ58 running 64-bit major release  (build 9200)
+| Date         : Tue Sep 20 19:32:02 2022
+| Host         : DESKTOP-K2VPBA5 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file black_box_control_sets_placed.rpt
 | Design       : black_box
 | Device       : xc7a35t
@@ -61,22 +61,22 @@ Table of Contents
 | No           | No                    | No                     |               7 |            5 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              14 |            9 |
+| Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               0 |            0 |
+| Yes          | Yes                   | No                     |              14 |            4 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+------------------+----------------------------+------------------+------------------+----------------+--------------+
-|   Clock Signal   |        Enable Signal       | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+------------------+----------------------------+------------------+------------------+----------------+--------------+
-|  clock_IBUF_BUFG | inputs/o_dato_b[3]_i_1_n_0 |                  |                4 |              4 |         1.00 |
-|  clock_IBUF_BUFG | load_1_IBUF                |                  |                2 |              4 |         2.00 |
-|  clock_IBUF_BUFG | inputs/o_opcode[5]_i_1_n_0 |                  |                3 |              6 |         2.00 |
-|  clock_IBUF_BUFG |                            |                  |                5 |              7 |         1.40 |
-+------------------+----------------------------+------------------+------------------+----------------+--------------+
++------------------+----------------------------+----------------------------+------------------+----------------+--------------+
+|   Clock Signal   |        Enable Signal       |      Set/Reset Signal      | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------+----------------------------+----------------------------+------------------+----------------+--------------+
+|  clock_IBUF_BUFG | inputs/o_dato_b[3]_i_2_n_0 | inputs/o_dato_b[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  clock_IBUF_BUFG | inputs/o_dato_a[3]_i_2_n_0 | inputs/o_dato_a[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  clock_IBUF_BUFG | inputs/o_opcode[5]_i_2_n_0 | inputs/o_opcode[5]_i_1_n_0 |                2 |              6 |         3.00 |
+|  clock_IBUF_BUFG |                            |                            |                5 |              7 |         1.40 |
++------------------+----------------------------+----------------------------+------------------+----------------+--------------+
 
 

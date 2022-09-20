@@ -1,0 +1,9 @@
+0.7
+2020.2
+Apr 18 2022
+16:05:34
+C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.sim/sim_1/behav/xsim/glbl.v,1649976174,verilog,,,,glbl,,,,,,,,
+C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sim_1/new/blackbox_tb.v,1663702903,verilog,,,,blackbox_tb,,,,,,,,
+C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/alu.v,1663702903,verilog,,C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/blackbox.v,,alu,,,,,,,,
+C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/blackbox.v,1663702903,verilog,,C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/switches.v,,black_box,,,,,,,,
+C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/switches.v,1663702903,verilog,,C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sim_1/new/blackbox_tb.v,,switches,,,,,,,,

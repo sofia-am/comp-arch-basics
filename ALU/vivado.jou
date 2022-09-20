@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue Sep 20 16:46:20 2022
+# Process ID: 6620
+# Current directory: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12760 C:\Users\sofia\OneDrive\Escritorio\ALU\TP-ARQUITECTURA\ALU\ALU.xpr
+# Log file: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/vivado.log
+# Journal file: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU\vivado.jou
+# Running On: DESKTOP-058OJ58, OS: Windows, CPU Frequency: 2712 MHz, CPU Physical cores: 2, Host memory: 8469 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.xpr
+update_compile_order -fileset sources_1

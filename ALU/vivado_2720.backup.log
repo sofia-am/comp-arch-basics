@@ -2,10 +2,10 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Tue Sep 20 20:51:10 2022
-# Process ID: 6896
+# Start of session at: Tue Sep 20 20:35:02 2022
+# Process ID: 2720
 # Current directory: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13128 C:\Users\sofia\OneDrive\Escritorio\ALU\TP-ARQUITECTURA\ALU\ALU.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4616 C:\Users\sofia\OneDrive\Escritorio\ALU\TP-ARQUITECTURA\ALU\ALU.xpr
 # Log file: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/vivado.log
 # Journal file: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU\vivado.jou
 # Running On: DESKTOP-058OJ58, OS: Windows, CPU Frequency: 2712 MHz, CPU Physical cores: 2, Host memory: 8469 MB
@@ -61,53 +61,7 @@ INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/matia/TP-ARQUI/AL
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/2022.1/data/ip'.
-open_project: Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 1601.398 ; gain = 0.000
+open_project: Time (s): cpu = 00:01:03 ; elapsed = 00:00:56 . Memory (MB): peak = 1626.973 ; gain = 0.000
 update_compile_order -fileset sources_1
-close [ open C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/display.v w ]
-add_files C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/display.v
-update_compile_order -fileset sources_1
-synth_design -rtl -rtl_skip_mlo -name rtl_1
-Command: synth_design -rtl -rtl_skip_mlo -name rtl_1
-Starting synth_design
-Using part: xc7a35tcpg236-1
-Top: black_box
-INFO: [Device 21-403] Loading part xc7a35tcpg236-1
----------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:19 . Memory (MB): peak = 1875.020 ; gain = 273.621
----------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'black_box' [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/blackbox.v:12]
-INFO: [Synth 8-6157] synthesizing module 'switches' [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/switches.v:12]
-INFO: [Synth 8-6155] done synthesizing module 'switches' (0#1) [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/switches.v:12]
-INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/alu.v:12]
-INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/alu.v:12]
-INFO: [Synth 8-6155] done synthesizing module 'black_box' (0#1) [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/blackbox.v:12]
-WARNING: [Synth 8-6014] Unused sequential element aux_reg was removed.  [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/alu.v:53]
----------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:18 ; elapsed = 00:00:26 . Memory (MB): peak = 1957.230 ; gain = 355.832
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Handling Custom Attributes
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:26 . Memory (MB): peak = 1957.230 ; gain = 355.832
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:26 . Memory (MB): peak = 1957.230 ; gain = 355.832
----------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1957.230 ; gain = 0.000
-INFO: [Project 1-570] Preparing netlist for logic optimization
-
-Processing XDC Constraints
-Initializing timing engine
-Parsing XDC File [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/constrs_1/new/constraints.xdc]
-Finished Parsing XDC File [C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/constrs_1/new/constraints.xdc]
-Completed Processing XDC Constraints
-
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2015.824 ; gain = 0.000
-INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
-
-RTL Elaboration Complete:  : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 2077.938 ; gain = 476.539
-9 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
-synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:50 ; elapsed = 00:01:08 . Memory (MB): peak = 2077.938 ; gain = 476.539
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Sep 20 20:49:18 2022...

@@ -1,0 +1,781 @@
+/*
+
+Xilinx Vivado v2022.1 (64-bit) [Major: 2022, Minor: 1]
+SW Build: 3526262 on Mon Apr 18 15:48:16 MDT 2022
+IP Build: 3524634 on Mon Apr 18 20:55:01 MDT 2022
+
+Process ID (PID): 6896
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Tue Sep 20 20:51:50 ART 2022
+Time zone: 	Argentina Standard Time (America/Buenos_Aires)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 4
+
+Screen size: 1920x1080
+Screen resolution (DPI): 125
+Available screens: 2
+Default font: family=Segoe UI,name=Segoe UI,style=plain,size=15
+Scale size: 19
+
+Java version: 	11.0.11 64-bit
+Java home: 	D:/Vivado/2022.1/tps/win64/jre11.0.11_9
+Java executable: 	D:/Vivado/2022.1/tps/win64/jre11.0.11_9/bin/java.exe
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Dsun.java2d.d3d=false, -Dsun.awt.nopixfmt=true, -Dsun.java2d.dpiaware=true, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	sofia
+User home directory: C:/Users/sofia
+User working directory: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: D:/Vivado
+HDI_APPROOT: D:/Vivado/2022.1
+RDI_DATADIR: D:/Vivado/2022.1/data
+RDI_BINDIR: D:/Vivado/2022.1/bin
+
+Vivado preferences file: C:/Users/sofia/AppData/Roaming/Xilinx/Vivado/2022.1/vivado.xml
+Vivado preferences directory: C:/Users/sofia/AppData/Roaming/Xilinx/Vivado/2022.1/
+Vivado layouts directory: C:/Users/sofia/AppData/Roaming/Xilinx/Vivado/2022.1/data/layouts
+PlanAhead jar file: 	D:/Vivado/2022.1/lib/classes/planAhead.jar
+Vivado log file: 	C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/vivado.log
+Vivado journal file: 	C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/vivado.jou
+Engine tmp dir: 	C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/.Xil/Vivado-6896-DESKTOP-058OJ58
+
+Xilinx Environment Variables
+----------------------------
+XILINX: D:/Vivado/2022.1/ids_lite/ISE
+XILINX_DSP: D:/Vivado/2022.1/ids_lite/ISE
+XILINX_HLS: D:/Vitis_HLS/2022.1
+XILINX_PLANAHEAD: D:/Vivado/2022.1
+XILINX_VIVADO: D:/Vivado/2022.1
+XILINX_VIVADO_HLS: D:/Vivado/2022.1
+
+
+GUI allocated memory:	256 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,420 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// WARNING: HEventQueue.dispatchEvent() is taking  1418 ms.
+// TclEventType: PROJECT_OPEN_DIALOG
+// Opening Vivado Project: C:\Users\sofia\OneDrive\Escritorio\ALU\TP-ARQUITECTURA\ALU\ALU.xpr. Version: Vivado v2022.1 
+// Tcl Message: open_project C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.xpr 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// WARNING: HTimer (HSTRUtils Dump STR Log Timer) is taking 1329ms to process. Increasing delay to 5000 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1335 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,420 MB. GUI used memory: 59 MB. Current time: 9/20/22, 8:51:52 PM ART
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 117 MB (+120206kb) [00:00:47]
+// [Engine Memory]: 1,420 MB (+1337485kb) [00:00:47]
+// WARNING: HEventQueue.dispatchEvent() is taking  8779 ms.
+// Tcl Message: open_project C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from 'C:/Users/matia/TP-ARQUI/ALU' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/utils_1/imports/impl_1' of run 'impl_1' is not writable, setting it to default location 'C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/utils_1/imports/impl_1'. INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/utils_1/imports/impl_1' of run 'impl_1' is not writable, setting it to default location 'C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/utils_1/imports/impl_1'. INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/2022.1/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 1601.398 ; gain = 0.000 
+// Project name: ALU; location: C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU; part: xc7a35tcpg236-1
+dismissDialog("Open Project"); // bA
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 5134 ms. Increasing delay to 3000 ms.
+// Tcl Message: update_compile_order -fileset sources_1 
+// PAPropertyPanels.initPanels (blackbox.v) elapsed time: 0.3s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, black_box (blackbox.v)]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, black_box (blackbox.v), inputs : switches (switches.v)]", 2, false, false, false, false, false, true); // D - Double Click
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // N
+selectCodeEditor("blackbox.v", 297, 199); // be
+selectCodeEditor("blackbox.v", 277, 176); // be
+// Elapsed time: 18 seconds
+selectCodeEditor("blackbox.v", 359, 115); // be
+selectCodeEditor("blackbox.v", 294, 67); // be
+selectCodeEditor("blackbox.v", 339, 114); // be
+selectCodeEditor("blackbox.v", 243, 287); // be
+selectCodeEditor("blackbox.v", 356, 297); // be
+selectCodeEditor("blackbox.v", 66, 330); // be
+// Elapsed time: 20 seconds
+selectCodeEditor("blackbox.v", 263, 253); // be
+selectCodeEditor("blackbox.v", 330, 275); // be
+selectCodeEditor("blackbox.v", 44, 201); // be
+selectCodeEditor("blackbox.v", 213, 192); // be
+selectCodeEditor("blackbox.v", 95, 470); // be
+selectCodeEditor("blackbox.v", 312, 451); // be
+selectCodeEditor("blackbox.v", 295, 412); // be
+selectCodeEditor("blackbox.v", 330, 226); // be
+// Elapsed time: 10 seconds
+selectCodeEditor("blackbox.v", 343, 198); // be
+// Elapsed time: 22 seconds
+selectCodeEditor("blackbox.v", 260, 208); // be
+selectCodeEditor("blackbox.v", 302, 157); // be
+selectCodeEditor("blackbox.v", 248, 370); // be
+// Elapsed time: 13 seconds
+selectCodeEditor("blackbox.v", 165, 366); // be
+// Elapsed time: 183 seconds
+unMinimizeFrame(PAResourceOtoP.PAViews_SOURCES, "Sources"); // aA
+// [GUI Memory]: 125 MB (+2249kb) [00:06:44]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // ao
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // ao
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ar
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectButton("NEXT", "Next >"); // JButton
+// 'g' command handler elapsed time: 5 seconds
+dismissDialog("Add Sources"); // c
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // D
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_CREATE_FILE, "Create File"); // a
+setText(PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, "display"); // aa
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Create Source File"); // F
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 11 seconds
+dismissDialog("Add Sources"); // c
+// Tcl Message: close [ open C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/display.v w ] 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/display.v 
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+selectButton("OptionPane.button", "Yes"); // JButton
+// TclEventType: FILE_SET_CHANGE
+dismissDialog("Define Module"); // I
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, display (display.v)]", 4, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, display (display.v)]", 4, false, false, false, false, false, true); // D - Double Click
+// Elapsed time: 10 seconds
+selectCodeEditor("display.v", 55, 361); // be
+selectCodeEditor("display.v", 42, 340); // be
+selectCodeEditor("display.v", 31, 366); // be
+selectCodeEditor("display.v", 33, 347); // be
+selectCodeEditor("display.v", 105, 456); // be
+selectCodeEditor("display.v", 85, 483); // be
+selectCodeEditor("display.v", 73, 402); // be
+selectCodeEditor("display.v", 111, 418); // be
+selectCodeEditor("display.v", 115, 411); // be
+// Elapsed time: 10 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectCodeEditor("blackbox.v", 747, 198); // be
+typeControlKey((HResource) null, "blackbox.v", 'c'); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 9, 329); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 166, 54); // be
+selectCodeEditor("display.v", 166, 53, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 169, 134); // be
+// Elapsed time: 35 seconds
+selectCodeEditor("display.v", 289, 250); // be
+// Elapsed time: 57 seconds
+selectCodeEditor("display.v", 95, 303); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 137, 132); // be
+selectCodeEditor("display.v", 180, 136); // be
+selectCodeEditor("display.v", 180, 136, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 172, 137); // be
+selectCodeEditor("display.v", 182, 142); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 188, 143); // be
+selectCodeEditor("display.v", 144, 140); // be
+selectCodeEditor("display.v", 152, 143); // be
+selectCodeEditor("display.v", 155, 163); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectCodeEditor("blackbox.v", 44, 220); // be
+selectCodeEditor("blackbox.v", 225, 332); // be
+selectCodeEditor("blackbox.v", 246, 364); // be
+selectCodeEditor("blackbox.v", 60, 50); // be
+selectCodeEditor("blackbox.v", 5, 190); // be
+selectCodeEditor("blackbox.v", 276, 306); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 115, 152); // be
+selectCodeEditor("display.v", 91, 160); // be
+selectCodeEditor("display.v", 99, 153); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 221, 155); // be
+// Elapsed time: 17 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectCodeEditor("blackbox.v", 327, 264); // be
+typeControlKey((HResource) null, "blackbox.v", 'c'); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 216, 179); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 321, 239); // be
+selectCodeEditor("display.v", 57, 178); // be
+selectCodeEditor("display.v", 247, 397); // be
+selectCodeEditor("display.v", 232, 148); // be
+selectCodeEditor("display.v", 309, 334); // be
+selectCodeEditor("display.v", 92, 135); // be
+// Elapsed time: 16 seconds
+selectCodeEditor("display.v", 87, 262); // be
+selectCodeEditor("display.v", 74, 135); // be
+selectCodeEditor("display.v", 106, 134); // be
+selectCodeEditor("display.v", 76, 138); // be
+selectCodeEditor("display.v", 86, 139); // be
+selectCodeEditor("display.v", 80, 140); // be
+selectCodeEditor("display.v", 80, 140); // be
+selectCodeEditor("display.v", 80, 140, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 128, 135); // be
+selectCodeEditor("display.v", 137, 135); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectCodeEditor("display.v", 86, 267); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 87, 287); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 90, 303); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 90, 325); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 86, 348); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 90, 367); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 89, 390); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 251, 402); // be
+selectCodeEditor("display.v", 291, 236); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 298, 234); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectCodeEditor("blackbox.v", 213, 325); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 324, 294); // be
+selectCodeEditor("display.v", 277, 334); // be
+selectCodeEditor("display.v", 27, 368); // be
+selectCodeEditor("display.v", 191, 259); // be
+selectCodeEditor("display.v", 191, 259, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 14, 272); // be
+selectCodeEditor("display.v", 126, 302); // be
+selectCodeEditor("display.v", 27, 282); // be
+selectCodeEditor("display.v", 253, 280); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 150, 280); // be
+selectCodeEditor("display.v", 150, 280, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 150, 280); // be
+selectCodeEditor("display.v", 150, 280); // be
+selectCodeEditor("display.v", 150, 280); // be
+selectCodeEditor("display.v", 150, 280); // be
+selectCodeEditor("display.v", 150, 280); // be
+selectCodeEditor("display.v", 150, 280); // be
+selectCodeEditor("display.v", 213, 300); // be
+selectCodeEditor("display.v", 150, 289); // be
+selectCodeEditor("display.v", 150, 289, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 150, 289, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+selectComboBox("FindAndReplaceDialog.bb_Replace with:", "numero", -1); // JComboBox
+selectButton("FindAndReplaceDialog.bb_Find", "Find"); // JButton
+selectCodeEditor("display.v", 369, 380); // be
+selectCodeEditor("display.v", 195, 161); // be
+selectCodeEditor("display.v", 331, 363); // be
+// Elapsed time: 11 seconds
+selectCodeEditor("display.v", 115, 287); // be
+selectCodeEditor("display.v", 115, 287, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 191, 197); // be
+selectCodeEditor("display.v", 292, 270); // be
+selectCodeEditor("display.v", 80, 202); // be
+// Elapsed time: 22 seconds
+selectCodeEditor("display.v", 153, 101); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 129, 264); // be
+selectCodeEditor("display.v", 129, 241); // be
+selectCodeEditor("display.v", 136, 245); // be
+selectCodeEditor("display.v", 146, 254); // be
+selectCodeEditor("display.v", 217, 264); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectCodeEditor("display.v", 47, 278); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+// Elapsed time: 31 seconds
+selectCodeEditor("display.v", 141, 263); // be
+selectCodeEditor("display.v", 194, 285); // be
+selectCodeEditor("display.v", 136, 288); // be
+selectCodeEditor("display.v", 141, 287); // be
+selectCodeEditor("display.v", 313, 283); // be
+selectCodeEditor("display.v", 636, 131); // be
+selectCodeEditor("display.v", 385, 165); // be
+// Elapsed time: 36 seconds
+selectCodeEditor("display.v", 49, 154); // be
+selectCodeEditor("display.v", 348, 200); // be
+selectCodeEditor("display.v", 133, 217); // be
+selectCodeEditor("display.v", 133, 217, false, false, false, false, true); // be - Double Click
+// Elapsed time: 15 seconds
+selectCodeEditor("display.v", 271, 46); // be
+selectCodeEditor("display.v", 357, 55); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectCodeEditor("display.v", 384, 58); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 274, 55); // be
+// Run Command: RDIResourceCommand.RDICommands_UNSELECT_ALL
+// Elapsed time: 10 seconds
+selectCodeEditor("display.v", 143, 56); // be
+selectCodeEditor("display.v", 241, 56, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+selectComboBox("FindAndReplaceDialog.bb_Replace with:", "r_Hex_Encoding_u", -1); // JComboBox
+selectButton("FindAndReplaceDialog.bb_Find", "Find"); // JButton
+selectCodeEditor("display.v", 510, 234); // be
+selectCodeEditor("display.v", 306, 57); // be
+selectCodeEditor("display.v", 125, 180); // be
+selectCodeEditor("display.v", 112, 408); // be
+selectCodeEditor("display.v", 148, 411); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectCodeEditor("display.v", 124, 406); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 132, 111); // be
+selectCodeEditor("display.v", 133, 111, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 273, 121); // be
+selectCodeEditor("display.v", 160, 136); // be
+selectCodeEditor("display.v", 291, 144, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+typeControlKey(null, null, 'z');
+selectComboBox("FindAndReplaceDialog.bb_Replace with:", "r_Hex_Encoding_d", -1); // JComboBox
+selectButton("FindAndReplaceDialog.bb_Find", "Find"); // JButton
+selectCodeEditor("display.v", 518, 382); // be
+selectCodeEditor("display.v", 48, 237); // be
+selectCodeEditor("display.v", 46, 245); // be
+selectCodeEditor("display.v", 51, 242); // be
+selectCodeEditor("display.v", 279, 198); // be
+selectCodeEditor("display.v", 412, 294); // be
+selectCodeEditor("display.v", 387, 304); // be
+selectCodeEditor("display.v", 403, 449); // be
+selectCodeEditor("display.v", 401, 258); // be
+selectCodeEditor("display.v", 556, 375); // be
+// Elapsed time: 10 seconds
+selectCodeEditor("display.v", 400, 388); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectCodeEditor("display.v", 323, 239); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 38, 265); // be
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+selectCodeEditor("display.v", 423, 336); // be
+selectCodeEditor("display.v", 79, 198); // be
+selectCodeEditor("display.v", 264, 393); // be
+selectCodeEditor("display.v", 268, 385); // be
+// Elapsed time: 16 seconds
+selectCodeEditor("display.v", 179, 270); // be
+selectCodeEditor("display.v", 246, 194); // be
+selectCodeEditor("display.v", 282, 98); // be
+selectCodeEditor("display.v", 245, 136); // be
+selectCodeEditor("display.v", 272, 268); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectCodeEditor("display.v", 276, 263); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 252, 277); // be
+// Elapsed time: 12 seconds
+selectCodeEditor("display.v", 332, 435); // be
+selectCodeEditor("display.v", 176, 263); // be
+selectCodeEditor("display.v", 429, 386); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectCodeEditor("display.v", 498, 404); // be
+selectCodeEditor("display.v", 497, 391); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 186, 347); // be
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+selectCodeEditor("display.v", 214, 306); // be
+selectCodeEditor("display.v", 211, 347); // be
+selectCodeEditor("display.v", 345, 350, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+// Elapsed time: 11 seconds
+selectCodeEditor("display.v", 487, 295); // be
+selectCodeEditor("display.v", 216, 347); // be
+selectCodeEditor("display.v", 326, 342, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+selectComboBox("FindAndReplaceDialog.bb_Replace with:", "u", -1); // JComboBox
+selectComboBox("FindAndReplaceDialog.bb_Replace with:", "r_Hex_Encoding_u", 1); // JComboBox
+selectButton("FindAndReplaceDialog.bb_Find", "Find"); // JButton
+selectCodeEditor("display.v", 634, 356); // be
+selectCodeEditor("display.v", 411, 244); // be
+selectCodeEditor("display.v", 443, 267); // be
+selectCodeEditor("display.v", 556, 252); // be
+selectCodeEditor("display.v", 576, 230); // be
+// Elapsed time: 31 seconds
+selectCodeEditor("display.v", 49, 140); // be
+selectCodeEditor("display.v", 299, 437); // be
+selectCodeEditor("display.v", 293, 467); // be
+// Elapsed time: 19 seconds
+selectCodeEditor("display.v", 146, 453); // be
+// Elapsed time: 26 seconds
+selectCodeEditor("display.v", 286, 435); // be
+selectCodeEditor("display.v", 280, 273); // be
+selectCodeEditor("display.v", 293, 351); // be
+selectCodeEditor("display.v", 284, 380); // be
+// [GUI Memory]: 133 MB (+1783kb) [00:24:29]
+// Elapsed time: 35 seconds
+selectButton(PAResourceCommand.PACommandNames_TOGGLE_VIEW_NAV, (String) null); // D
+// Run Command: PAResourceCommand.PACommandNames_TOGGLE_VIEW_NAV
+// Elapsed time: 40 seconds
+selectCodeEditor("display.v", 376, 114); // be
+// Elapsed time: 51 seconds
+selectCodeEditor("display.v", 376, 115); // be
+selectCodeEditor("display.v", 376, 115, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 422, 109); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 376, 129); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 380, 160); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 377, 182); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 377, 201); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+// Elapsed time: 10 seconds
+selectCodeEditor("display.v", 380, 222); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 379, 242); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 381, 261); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 374, 284); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 377, 307); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+// Elapsed time: 37 seconds
+selectCodeEditor("display.v", 392, 330); // be
+// Elapsed time: 47 seconds
+selectCodeEditor("display.v", 464, 428); // be
+selectCodeEditor("display.v", 496, 433); // be
+selectCodeEditor("display.v", 483, 456); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+// Elapsed time: 13 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+selectCodeEditor("display.v", 414, 57); // be
+selectCodeEditor("display.v", 357, 393); // be
+selectCodeEditor("display.v", 481, 382); // be
+selectCodeEditor("display.v", 463, 219); // be
+selectCodeEditor("display.v", 186, 92); // be
+selectCodeEditor("display.v", 400, 222); // be
+selectCodeEditor("display.v", 279, 382); // be
+// Elapsed time: 33 seconds
+selectCodeEditor("display.v", 665, 293); // be
+// HMemoryUtils.trashcanNow. Engine heap size: 1,420 MB. GUI used memory: 68 MB. Current time: 9/20/22, 9:21:53 PM ART
+// Elapsed time: 77 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // m
+unMinimizeFrame(PAResourceOtoP.PAViews_SOURCES, "Sources"); // aA
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, black_box (blackbox.v), inputs : switches (switches.v)]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, black_box (blackbox.v), internal_alu : alu (alu.v)]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, black_box (blackbox.v), internal_alu : alu (alu.v)]", 3, false, false, false, false, false, true); // D - Double Click
+// Elapsed time: 136 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2); // m
+// Elapsed time: 28 seconds
+selectCodeEditor("display.v", 64, 410); // be
+typeControlKey((HResource) null, "display.v", 'v'); // be
+selectCodeEditor("display.v", 189, 32); // be
+selectCodeEditor("display.v", 224, 33); // be
+selectCodeEditor("display.v", 173, 401); // be
+// Elapsed time: 12 seconds
+selectCodeEditor("display.v", 246, 37); // be
+selectCodeEditor("display.v", 156, 389); // be
+selectCodeEditor("display.v", 105, 427); // be
+selectCodeEditor("display.v", 246, 114); // be
+selectCodeEditor("display.v", 246, 114, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 245, 115, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+selectButton("FindAndReplaceDialog.bb_Find", "Find"); // JButton
+selectCodeEditor("display.v", 360, 208); // be
+selectCodeEditor("display.v", 281, 221); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("display.v", 338, 300); // be
+selectCodeEditor("display.v", 650, 308); // be
+selectCodeEditor("display.v", 658, 437); // be
+selectCodeEditor("display.v", 658, 435, false, false, false, false, true); // be - Double Click
+selectCodeEditor("display.v", 252, 87); // be
+selectCodeEditor("display.v", 707, 441); // be
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2, true, false); // m - Popup Trigger
+selectButton(RDIResourceCommand.RDICommands_SAVE_FILE, (String) null); // D
+selectButton(RDIResourceCommand.RDICommands_SAVE_FILE, (String) null); // D
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 2, true, false); // m - Popup Trigger
+selectCodeEditor("display.v", 564, 42); // be
+selectCodeEditor("display.v", 455, 70, false, false, false, true, false); // be - Popup Trigger
+selectMenu(RDIResource.HCodeEditor_BLANK_OPERATIONS, "Blank Operations"); // aj
+selectMenu(RDIResource.HCodeEditor_DIFF_AGAINST, "Diff against"); // aj
+selectMenu(RDIResource.HCodeEditor_COMMANDS_TO_FOLD_TEXT, "Folding"); // aj
+selectMenu(RDIResource.HCodeEditor_DIFF_AGAINST, "Diff against"); // aj
+selectMenu(RDIResource.HCodeEditor_BLANK_OPERATIONS, "Blank Operations"); // aj
+selectCodeEditor("display.v", 346, 81); // be
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, display (display.v)]", 4, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, display (display.v)]", 4, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("display.v", 658, 364); // be
+selectCodeEditor("display.v", 66, 77); // be
+selectCodeEditor("display.v", 385, 390); // be
+selectCodeEditor("display.v", 292, 126); // be
+selectCodeEditor("display.v", 352, 336); // be
+// Elapsed time: 34 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "alu.v", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 3); // m
+// Elapsed time: 31 seconds
+selectCodeEditor("display.v", 366, 264); // be
+selectCodeEditor("display.v", 388, 389); // be
+selectCodeEditor("display.v", 364, 391); // be
+selectCodeEditor("display.v", 151, 389); // be
+selectCodeEditor("display.v", 279, 368); // be
+selectCodeEditor("display.v", 157, 361); // be
+selectCodeEditor("display.v", 240, 97); // be
+selectCodeEditor("display.v", 270, 273); // be
+selectCodeEditor("display.v", 266, 275); // be
+selectCodeEditor("display.v", 170, 83); // be
+selectCodeEditor("display.v", 179, 118); // be
+selectCodeEditor("display.v", 185, 132); // be
+// Elapsed time: 15 seconds
+selectCodeEditor("display.v", 292, 431); // be
+selectCodeEditor("display.v", 412, 218); // be
+// Elapsed time: 16 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "alu.v", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectCodeEditor("blackbox.v", 329, 220); // be
+selectCodeEditor("blackbox.v", 336, 304); // be
+selectCodeEditor("blackbox.v", 339, 222); // be
+// Elapsed time: 32 seconds
+selectCodeEditor("blackbox.v", 469, 209); // be
+selectCodeEditor("blackbox.v", 391, 259); // be
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+selectButton(RDIResource.ConfirmSaveTextEditsDialog_YES, "Yes"); // a
+// TclEventType: DG_GRAPH_STALE
+dismissDialog("Text Changed"); // k
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("blackbox.v", 295, 273); // be
+selectCodeEditor("blackbox.v", 259, 264); // be
+typeControlKey((HResource) null, "blackbox.v", 'c'); // be
+selectCodeEditor("blackbox.v", 271, 257); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, display (display.v)]", 4, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, display (display.v)]", 4, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("display.v", 227, 243); // be
+typeControlKey((HResource) null, "display.v", 'c'); // be
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+selectButton(RDIResource.ConfirmSaveTextEditsDialog_CANCEL, "Cancel"); // a
+dismissDialog("Text Changed"); // k
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectCodeEditor("blackbox.v", 269, 287); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+selectCodeEditor("blackbox.v", 238, 330); // be
+selectCodeEditor("blackbox.v", 268, 331); // be
+selectCodeEditor("blackbox.v", 273, 339); // be
+selectCodeEditor("blackbox.v", 271, 330); // be
+selectCodeEditor("blackbox.v", 269, 330); // be
+typeControlKey((HResource) null, "blackbox.v", 'c'); // be
+selectCodeEditor("blackbox.v", 358, 330); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+selectCodeEditor("blackbox.v", 76, 350); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("blackbox.v", 338, 337); // be
+// TclEventType: DG_GRAPH_STALE
+selectCodeEditor("blackbox.v", 307, 250); // be
+selectCodeEditor("blackbox.v", 285, 259); // be
+selectCodeEditor("blackbox.v", 344, 182); // be
+typeControlKey(null, null, 'z');
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "alu.v", 2); // m
+selectCodeEditor("alu.v", 318, 260); // be
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, black_box (blackbox.v), inputs : switches (switches.v)]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, black_box (blackbox.v), inputs : switches (switches.v)]", 2, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("switches.v", 460, 310); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+selectCodeEditor("switches.v", 423, 225); // be
+selectCodeEditor("switches.v", 335, 325); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "display.v", 3); // m
+typeControlKey((HResource) null, "display.v", 'c'); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "switches.v", 4); // m
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+selectCodeEditor("switches.v", 259, 363); // be
+selectCodeEditor("switches.v", 69, 330); // be
+selectCodeEditor("switches.v", 110, 341); // be
+selectCodeEditor("switches.v", 63, 320); // be
+selectCodeEditor("switches.v", 72, 326); // be
+selectCodeEditor("switches.v", 248, 376); // be
+typeControlKey((HResource) null, "switches.v", 'c'); // be
+selectCodeEditor("switches.v", 264, 363); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("switches.v", 334, 175); // be
+selectCodeEditor("switches.v", 234, 220); // be
+// Elapsed time: 19 seconds
+selectCodeEditor("switches.v", 139, 139); // be
+selectCodeEditor("switches.v", 272, 139); // be
+selectCodeEditor("switches.v", 274, 139, false, false, false, false, true); // be - Double Click
+selectCodeEditor("switches.v", 129, 141); // be
+selectCodeEditor("switches.v", 129, 140, false, false, false, false, true); // be - Double Click
+selectCodeEditor("switches.v", 151, 139); // be
+selectCodeEditor("switches.v", 151, 139, false, false, false, false, true); // be - Double Click
+selectCodeEditor("switches.v", 151, 139); // be
+selectCodeEditor("switches.v", 151, 139); // be
+selectCodeEditor("switches.v", 151, 139); // be
+selectCodeEditor("switches.v", 151, 139); // be
+selectCodeEditor("switches.v", 178, 138); // be
+selectCodeEditor("switches.v", 149, 137); // be
+selectCodeEditor("switches.v", 137, 204); // be
+selectCodeEditor("switches.v", 161, 202, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+selectComboBox("FindAndReplaceDialog.bb_Find what:", "reg", -1); // JComboBox
+selectButton("FindAndReplaceDialog.bb_Find", "Find"); // JButton
+selectCodeEditor("switches.v", 150, 183); // be
+selectCodeEditor("switches.v", 150, 183, false, false, false, false, true); // be - Double Click
+selectCodeEditor("switches.v", 150, 183, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+selectComboBox("FindAndReplaceDialog.bb_Replace with:", "reg", -1); // JComboBox
+selectButton("FindAndReplaceDialog.bb_Find", "Find"); // JButton
+selectCodeEditor("switches.v", 354, 330); // be
+selectCodeEditor("switches.v", 258, 262); // be
+// Elapsed time: 16 seconds
+selectCodeEditor("switches.v", 221, 148); // be
+selectCodeEditor("switches.v", 285, 227); // be
+selectCodeEditor("switches.v", 299, 141); // be
+// Elapsed time: 16 seconds
+selectCodeEditor("switches.v", 199, 248); // be
+typeControlKey((HResource) null, "switches.v", 'c'); // be
+selectCodeEditor("switches.v", 184, 241); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+selectCodeEditor("switches.v", 106, 259); // be
+selectCodeEditor("switches.v", 190, 72); // be
+selectCodeEditor("switches.v", 216, 224); // be
+typeControlKey((HResource) null, "switches.v", 'c'); // be
+selectCodeEditor("switches.v", 230, 308); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+selectCodeEditor("switches.v", 259, 435); // be
+selectCodeEditor("switches.v", 218, 344); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+selectCodeEditor("switches.v", 179, 234); // be
+selectCodeEditor("switches.v", 135, 172); // be
+typeControlKey((HResource) null, "switches.v", 'c'); // be
+selectCodeEditor("switches.v", 177, 298); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+typeControlKey((HResource) null, "switches.v", 'v'); // be
+// Elapsed time: 21 seconds
+selectCodeEditor("switches.v", 256, 243); // be
+typeControlKey((HResource) null, "switches.v", 'c'); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "blackbox.v", 1); // m
+selectCodeEditor("blackbox.v", 113, 202); // be
+selectCodeEditor("blackbox.v", 256, 189); // be
+selectCodeEditor("blackbox.v", 246, 176); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+selectCodeEditor("blackbox.v", 137, 194); // be
+selectCodeEditor("blackbox.v", 137, 194, false, false, false, false, true); // be - Double Click
+selectCodeEditor("blackbox.v", 150, 199); // be
+selectCodeEditor("blackbox.v", 150, 199, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "blackbox.v", 'c'); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+selectCodeEditor("blackbox.v", 147, 254); // be
+selectCodeEditor("blackbox.v", 147, 254, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+selectCodeEditor("blackbox.v", 291, 295); // be
+selectButton(RDIResourceCommand.RDICommands_SAVE_FILE, (String) null); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("blackbox.v", 221, 387); // be
+selectCodeEditor("blackbox.v", 229, 341); // be
+// Elapsed time: 13 seconds
+typeControlKey((HResource) null, "blackbox.v", 'c'); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+typeControlKey((HResource) null, "blackbox.v", 'c'); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+typeControlKey((HResource) null, "blackbox.v", 'v'); // be
+selectCodeEditor("blackbox.v", 36, 372); // be
+selectCodeEditor("blackbox.v", 185, 370, false, false, false, true, false); // be - Popup Trigger
+selectMenuItem(RDIResource.HInputHandler_REPLACE_TEXT, "Replace..."); // ar
+selectComboBox("FindAndReplaceDialog.bb_Replace with:", ".o_load_1(o_load_1),", -1); // JComboBox
+selectCodeEditor("blackbox.v", 108, 364); // be
+// Elapsed time: 15 seconds
+selectCodeEditor("blackbox.v", 261, 395); // be
+selectCodeEditor("blackbox.v", 240, 417); // be
+// Elapsed time: 21 seconds
+selectCodeEditor("blackbox.v", 270, 379); // be
+// Elapsed time: 12 seconds
+selectCodeEditor("blackbox.v", 260, 429); // be
+selectButton(RDIResourceCommand.RDICommands_SAVE_FILE, (String) null); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("blackbox.v", 246, 383); // be
+selectCodeEditor("blackbox.v", 241, 275); // be
+selectCodeEditor("blackbox.v", 295, 317); // be
+selectCodeEditor("blackbox.v", 292, 313); // be
+selectCodeEditor("blackbox.v", 280, 333); // be
+selectCodeEditor("blackbox.v", 185, 351); // be
+selectCodeEditor("blackbox.v", 183, 370); // be
+selectCodeEditor("blackbox.v", 193, 398); // be
+selectCodeEditor("blackbox.v", 195, 418); // be
+selectCodeEditor("blackbox.v", 315, 436); // be
+selectCodeEditor("blackbox.v", 219, 280); // be
+selectButton(PAResourceOtoP.PlanAheadTab_SHOW_FLOW_NAVIGATOR, "Flow Navigator"); // B
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12); // n
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12); // n
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design, Schematic]", 15, false); // n
+selectButton(PAResourceQtoS.SaveProjectUtils_SAVE, "Save"); // a
+// TclEventType: DG_GRAPH_STALE
+dismissDialog("Save Project"); // al
+// TclEventType: FILE_SET_CHANGE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Elaborate Design"); // A
+// Tcl Message: synth_design -rtl -rtl_skip_mlo -name rtl_1 
+// Tcl Message: Command: synth_design -rtl -rtl_skip_mlo -name rtl_1 Starting synth_design Using part: xc7a35tcpg236-1 Top: black_box 
+// TclEventType: ELABORATE_START
+// HMemoryUtils.trashcanNow. Engine heap size: 1,420 MB. GUI used memory: 71 MB. Current time: 9/20/22, 9:38:58 PM ART
+// TclEventType: ELABORATE_FINISH
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 2053 ms. Increasing delay to 4000 ms.
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 1,420 MB. GUI used memory: 71 MB. Current time: 9/20/22, 9:39:26 PM ART
+// Xgd.load filename: D:/Vivado/2022.1/data/parts/xilinx/artix7/devint/artix7/xc7a35t/xc7a35t.xgd; ZipEntry: xc7a35t_detail.xgd elapsed time: 1.2s
+// DeviceModel: Load Xgds SwingWorker Join Forever elapsed time: 1.5s
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// RouteApi::loadEngineXgdAndInitRouteStorage elapsed time: 1.4s
+// WARNING: HEventQueue.dispatchEvent() is taking  6145 ms.
+// TclEventType: CURR_DESIGN_SET

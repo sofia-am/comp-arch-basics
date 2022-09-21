@@ -24,7 +24,11 @@ module black_box
         output wire [OUTPUT_SIZE-1:0] o_result,
         output wire o_carry,
         output wire o_zero,
-        output wire o_signo
+        output wire o_signo,
+        output wire o_load_1,
+        output wire o_load_2,
+        output wire o_load_3,
+        output wire o_load_4
     );
 
 wire [DATA_SIZE-1:0]dato_a;
@@ -40,7 +44,11 @@ switches inputs( //instancio un modulo inputs con las mismas entradas que main
     .load_4(load_4),
     .o_dato_a(dato_a),
     .o_dato_b(dato_b),
-    .o_opcode(opcode)
+    .o_opcode(opcode),
+    .o_load_1(o_load_1),
+    .o_load_2(o_load_2),
+    .o_load_3(o_load_3),
+    .o_load_4(o_load_4)
 );
 
 alu internal_alu( //instancio modulo alu con las mismas salidas

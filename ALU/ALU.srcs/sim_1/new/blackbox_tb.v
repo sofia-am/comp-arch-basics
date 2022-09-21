@@ -18,6 +18,7 @@ parameter OUTPUT_SIZE = 4;
 reg load_1;
 reg load_2;
 reg load_3;
+reg load_4;
 reg clock;
 reg [SWITCHES-1:0] numero;
 
@@ -26,6 +27,10 @@ wire [OUTPUT_SIZE-1:0] o_result;
 wire o_carry;
 wire o_zero;
 wire o_signo;
+wire o_load_1;
+wire o_load_2;
+wire o_load_3;
+wire o_load_4;
 
 //parameter local
 localparam ADD = 6'b100000; //32
@@ -39,8 +44,9 @@ localparam NOR = 6'b100111; //39
 
 initial begin
     clock = 1'b1;
-    numero = 0;
-    load_3 =1;
+    numero = 6'd0;
+    load_3 = 1'b1;
+    load_4 = 1'b0;
 end
 
 always begin
@@ -272,11 +278,21 @@ always begin
     load_3 = 1'b0;
     
     //se limpia opcode
+    /*
     #2
     numero = 0;
     load_3 =1;
     #2
     load_3 = 1'b0;
+    */
+    ///////////////////////////////////////////////////////////////////////////////////
+    //reset
+    
+    #2
+    numero = 6'd5;
+    load_4 = 1'b1;
+    #2
+    load_4 = 1'b0;
     
     ///////////////////////////////////////////////////////////////////////////////////
     
@@ -329,6 +345,8 @@ always begin
     load_3 =1;
     #2
     load_3 = 1'b0;
+    
+      
     $finish;
 end    
 
@@ -338,10 +356,15 @@ black_box blackbox(
     .load_1(load_1),
     .load_2(load_2),
     .load_3(load_3),
+    .load_4(load_4),
     .o_result(o_result),
     .o_carry(o_carry),
     .o_zero(o_zero),
-    .o_signo(o_signo)
+    .o_signo(o_signo),
+    .o_load_1(o_load_1),
+    .o_load_2(o_load_2),
+    .o_load_3(o_load_3),
+    .o_load_4(o_load_4)
 );
 
 endmodule

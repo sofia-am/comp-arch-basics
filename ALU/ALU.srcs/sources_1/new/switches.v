@@ -21,62 +21,58 @@ module switches
         input wire load_4, //reset
         input wire clock,
         ///////////////////////////////////////////////////////////////////////////////////
-        output reg [DATA_SIZE-1:0] o_dato_a,
-        output reg [DATA_SIZE-1:0] o_dato_b,
-        output reg [OPCODE_SIZE-1:0] o_opcode,
+        //output reg [DATA_SIZE-1:0] o_dato_a,
+        //output reg [DATA_SIZE-1:0] o_dato_b,
+        //output reg [OPCODE_SIZE-1:0] o_opcode,
         ///////////////////////////////////////////////////////////////////////////////////
-        //output wire [DATA_SIZE-1:0] dato_a,
-        //output wire [DATA_SIZE-1:0] dato_b,
-        //output wire [OPCODE_SIZE-1:0] opcode
+        output wire [DATA_SIZE-1:0] o_dato_a,
+        output wire [DATA_SIZE-1:0] o_dato_b,
+        output wire [OPCODE_SIZE-1:0] o_opcode,
         output wire o_load_1,
         output wire o_load_2,
         output wire o_load_3,
         output wire o_load_4
     );
 
-reg aux_dato_a;
-reg aux_dato_b;
-reg aux_opcode;
+reg [DATA_SIZE-1:0]aux_dato_a;
+reg [DATA_SIZE-1:0]aux_dato_b;
+reg [OPCODE_SIZE-1:0] aux_opcode;
 reg aux_load_1;
 reg aux_load_2;
 reg aux_load_3;
 reg aux_load_4;
 
 always @(posedge clock) begin
-    
-    aux_load_1 = 1'b0;
-    aux_load_2 = 1'b0;
-    aux_load_3 = 1'b0;
-    aux_load_4 = 1'b0;
-    
-    if(load_1) begin
+
+    if(load_4) begin
+        aux_dato_a <= 1'b0;
+        aux_dato_b <= 1'b0;
+        aux_opcode <= 1'b0;
+        aux_load_4 <= 1'b1;
+    end
+    else if(load_1) begin
         //aux_dato_a = numero;
-        o_dato_a = numero;
-        aux_load_1 = 1'b1;
+        aux_dato_a <= numero;
+        aux_load_1 <= 1'b1;
     end
     else if(load_2) begin
         //aux_dato_b = numero;
-        o_dato_b = numero;
-        aux_load_2 = 1'b1;
+        aux_dato_b <= numero;
+        aux_load_2 <= 1'b1;
     end
     else if(load_3) begin
         //aux_opcode = numero;
-        o_opcode = numero;
-        aux_load_3 = 1'b1;
-    end
-    else if(load_4) begin
-        o_dato_a = 1'b0;
-        o_dato_b = 1'b0;
-        o_opcode = 1'b0;
-        aux_load_4 = 1'b1;
-    end
+        aux_opcode <= numero;
+        aux_load_3 <= 1'b1;
+    end 
 end
 
     assign o_load_1 = aux_load_1;
     assign o_load_2 = aux_load_2;
     assign o_load_3 = aux_load_3;
     assign o_load_4 = aux_load_4;
-    //assign o_dato_a = aux_dato_a;
-    //assign o_dato_b = aux_dato_b;
-    //assign o_opcode = aux_opcode;    
+    assign o_dato_a = aux_dato_a;
+    assign o_dato_b = aux_dato_b;
+    assign o_opcode = aux_opcode;    
+    
 endmodule

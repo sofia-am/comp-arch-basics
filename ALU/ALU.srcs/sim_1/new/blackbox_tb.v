@@ -43,9 +43,11 @@ localparam SRL = 6'b000010; //2
 localparam NOR = 6'b100111; //39
 
 initial begin
+    load_1 = 1'b0;
+    load_2 = 1'b0;
     clock = 1'b1;
     numero = 6'd0;
-    load_3 = 1'b1;
+    load_3 = 1'b0;
     load_4 = 1'b0;
 end
 
@@ -54,6 +56,12 @@ always begin
     clock = ~clock;
 end
 always begin
+    
+    load_4 = 1'b1;
+    #5
+    load_4 = 1'b0;
+    
+    
     #2
     load_3 = 1'b0;
     
@@ -61,14 +69,15 @@ always begin
     #2
     numero = 1'b1; //cargo a con un 1
     load_1 = 1'b1;
-    #2
+    #5
     load_1 = 1'b0;
+    
     #2
     numero = 2; //cargo b con un 2
     load_2 = 1'b1;
-    #2
+    #6
     load_2 = 1'b0;
-    #2
+    #3
     numero = ADD;
     load_3 = 1'b1; //cargo opcode (suma)
     #2

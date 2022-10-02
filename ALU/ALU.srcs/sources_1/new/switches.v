@@ -37,33 +37,46 @@ module switches
 reg [DATA_SIZE-1:0]aux_dato_a;
 reg [DATA_SIZE-1:0]aux_dato_b;
 reg [OPCODE_SIZE-1:0] aux_opcode;
-reg aux_load_1;
-reg aux_load_2;
-reg aux_load_3;
-reg aux_load_4;
+reg aux_load_1 = 1'b0;
+reg aux_load_2 = 1'b0;
+reg aux_load_3 = 1'b0;
+reg aux_load_4 = 1'b0;
 
 always @(posedge clock) begin
 
     if(load_4) begin
-        aux_dato_a <= 1'b0;
-        aux_dato_b <= 1'b0;
-        aux_opcode <= 1'b0;
+        aux_dato_a <= 4'b0;
+        aux_dato_b <= 4'b0;
+        aux_opcode <= 6'b0;
+        
+        aux_load_1 <= 1'b0;
+        aux_load_2 <= 1'b0;
+        aux_load_3 <= 1'b0;
         aux_load_4 <= 1'b1;
     end
     else if(load_1) begin
         //aux_dato_a = numero;
         aux_dato_a <= numero;
         aux_load_1 <= 1'b1;
+        aux_load_2 <= 1'b0;
+        aux_load_3 <= 1'b0;
+        aux_load_4 <= 1'b0;
     end
     else if(load_2) begin
         //aux_dato_b = numero;
         aux_dato_b <= numero;
         aux_load_2 <= 1'b1;
+        aux_load_1 <= 1'b0;
+        aux_load_3 <= 1'b0;
+        aux_load_4 <= 1'b0;
     end
     else if(load_3) begin
         //aux_opcode = numero;
         aux_opcode <= numero;
         aux_load_3 <= 1'b1;
+        aux_load_1 <= 1'b0;
+        aux_load_2 <= 1'b0;
+        aux_load_4 <= 1'b0;
     end 
 end
 

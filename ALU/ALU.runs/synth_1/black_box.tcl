@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/matia/TP-ARQUI/ALU/ALU.runs/synth_1/black_box.tcl"
+  variable script "C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.runs/synth_1/black_box.tcl"
   variable category "vivado_synth"
 }
 
@@ -71,25 +71,26 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 1
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/matia/TP-ARQUI/ALU/ALU.cache/wt [current_project]
-set_property parent.project_path C:/Users/matia/TP-ARQUI/ALU/ALU.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.cache/wt [current_project]
+set_property parent.project_path C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
-set_property ip_output_repo c:/Users/matia/TP-ARQUI/ALU/ALU.cache/ip [current_project]
+set_property ip_output_repo c:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/sources_1/new/alu.v
-  C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/sources_1/new/switches.v
-  C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/sources_1/new/blackbox.v
+  C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/alu.v
+  C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/switches.v
+  C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/sources_1/new/blackbox.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -100,12 +101,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/constrs_1/new/constraints.xdc
-set_property used_in_implementation false [get_files C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/constrs_1/new/constraints.xdc]
+read_xdc C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/constrs_1/new/constraints.xdc
+set_property used_in_implementation false [get_files C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/constrs_1/new/constraints.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/matia/TP-ARQUI/ALU/ALU.srcs/utils_1/imports/synth_1/black_box.dcp
+read_checkpoint -auto_incremental -incremental C:/Users/sofia/OneDrive/Escritorio/ALU/TP-ARQUITECTURA/ALU/ALU.srcs/utils_1/imports/synth_1/black_box.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

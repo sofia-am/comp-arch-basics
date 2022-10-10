@@ -29,7 +29,7 @@ module rx_module
     (
         input wire  clk, reset,
         input wire  rx_in, tick, 
-        output wire [2:0]rx_status, 
+        output wire [2:0]out_rx_status, 
         /* rx_status:
             00 -> OK
             01 -> RUIDO
@@ -49,6 +49,7 @@ localparam  [2:0]
     ERROR       =   3'b100;  
     
 //declaramos los registros que vamos a utilizar
+reg [2:0]   rx_status;
 reg [2:0]   state, update_state;
 reg [3:0]   tick_count, update_tick; //con este registro contamos la cantidad de ticks que recibimos del baud rate generator
 reg [2:0]   bit_count, update_count; //cant de bits que recibimos (max 8)
@@ -81,13 +82,12 @@ always @*
         
         case(state)
             IDLE: begin 
+                update_tick = 0;
                 if(rx_in) begin
                     update_state = IDLE; //mientras no me llegue un 0, me quedo en IDLE
-                    update_tick = 0;
                 end
                 else begin 
                     update_state = START;
-                    update_tick = 0;
                 end 
             end
            
@@ -152,11 +152,10 @@ always @*
                     end 
                 end
             end
-           endcase  
-            
-                    
-        
+       endcase  
+    end
     
+    assign rx_status_out = rx_status;
+    assign data = buffer;
     
-
 endmodule

@@ -1,24 +1,12 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/07/2022 08:02:28 PM
-// Design Name: 
+// Authors: Amallo, Sofia - Raya Plasencia, Matias
 // Module Name: rx_module
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
+// Project Name: UART
+// Target Devices: Basys3
+// Description: Finite state machine based UART receptor module
 // Revision 0.01 - File Created
-// Additional Comments:
-// 
 //////////////////////////////////////////////////////////////////////////////////
-
 
 module rx_module
     #( 
@@ -27,16 +15,16 @@ module rx_module
                     TICK_WAIT = 16
     )
     (
-        input wire  clk, reset,
-        input wire  rx_in, tick, 
+        input wire  in_clk, in_reset,
+        input wire  in_rx, in_tick, 
         output wire [2:0]out_rx_status, 
-        /* rx_status:
+        /* out_rx_status:
             00 -> OK
             01 -> RUIDO
             10 -> STOP
             11 -> UNKNOWN
         */
-        output wire [7:0]data 
+        output wire [7:0]out_data 
     );
     
 
@@ -50,112 +38,125 @@ localparam  [2:0]
     
 //declaramos los registros que vamos a utilizar
 reg [2:0]   rx_status;
-reg [2:0]   state, update_state;
-reg [3:0]   tick_count, update_tick; //con este registro contamos la cantidad de ticks que recibimos del baud rate generator
-reg [2:0]   bit_count, update_count; //cant de bits que recibimos (max 8)
-reg [7:0]   buffer, update_buffer;
+reg [2:0]   current_state, next_state;
+reg [3:0]   tick_count, next_tick_count; //con este registro contamos la cantidad de ticks que recibimos del baud rate generator
+reg [2:0]   bit_count, next_bit_count; //cant de bits que recibimos (max 8)
+reg [7:0]   current_buffer, next_buffer;
 
-always @(posedge clk, posedge reset)
+always @(posedge in_clk, posedge in_reset)
 //en este bloque se actualiza el estado/se realiza un reset.
-    if(reset)   
+    if(in_reset)   
         begin   
-            state <= IDLE;
+            current_state <= IDLE;
             tick_count <= 4'b0;
             bit_count <= 3'b0;
-            buffer <= 8'b0;    
+            current_buffer <= 8'b0;    
         end
     else
         begin
-            state <= update_state;
-            tick_count <= update_tick;
-            bit_count <= update_count;
-            buffer <= update_buffer;
+            current_state <= next_state;
+            tick_count <= next_tick_count;
+            bit_count <= next_bit_count;
+            current_buffer <= next_buffer;
         end
 
-always @*
-    begin
-        update_state = state;
-        //rx_status = 3'b00; //ok
-        update_tick = tick_count;
-        update_count = bit_count;
-        update_buffer = buffer;
-        
-        case(state)
-            IDLE: begin 
-                update_tick = 0;
-                if(rx_in) begin
-                    update_state = IDLE; //mientras no me llegue un 0, me quedo en IDLE
-                end
-                else begin 
-                    update_state = START;
-                end 
+always @* begin //cualquier cambio en alguna de las entradas
+
+// "guardo" el estado de los registros, los voy a pisar adentro de los case.
+    next_state = current_state;
+    next_bit_count = bit_count;
+    next_buffer = current_buffer;
+    next_tick_count = tick_count;
+
+    case(current_state)
+
+        IDLE: begin 
+            next_tick_count = 0;
+            if(in_rx) begin
+                next_state = IDLE; //mientras no me llegue un 0, me quedo en IDLE
+                //un poco redundante igual porque si no cambia el estado entonces next_state == current_state
             end
-           
-            START: begin
-                if(tick) begin
-                    if(tick_count == 4'd7) begin
-                        update_state = RECV; 
-                        update_tick = 4'b0;                       
+            else begin 
+                next_state = START; 
+                //no se cambia de estado hasta que no haya un flanco de clock
+            end 
+        end
+        
+        START: begin
+            if(in_tick) begin
+
+                next_tick_count = tick_count + 1;
+
+                if(tick_count == (TICK_WAIT/2)) begin
+                    next_state = RECV; 
+                    next_tick_count = 4'b0;   //limpio el contador                    
+                end
+
+                if(in_rx) begin
+                    //si la entrada es 1 (no fue 0 por 7 ticks) entonces considero que fue ruido
+                        next_state = ERROR;
+                        rx_status = 3'b01;
+                        next_tick_count = 4'b0;
+                end                                          
+            end
+        end
+        
+        RECV: begin
+            if(in_tick) begin
+
+                next_tick_count = tick_count + 1;
+
+                if(tick_count == TICK_WAIT) begin
+                    next_tick_count = 4'b0;
+                    next_buffer[bit_count] = in_rx; //almacena en la posiciï¿½n bit_count el valor ingresado
+                    if(bit_count == (WORD_SIZE - 1)) begin //completï¿½ la palabra
+                        next_state = STOP;  
+                        next_bit_count = 3'b0;                         
                     end
                     else begin
-                        update_tick = tick_count + 1;
+                        next_bit_count = bit_count + 1;                            
                     end
-                    if(rx_in) begin
-                        //si la entrada es 1 (no fue 0 por 7 ticks) entonces considero que fue ruido
-                            //update_state = ERROR;
-                            rx_status = 3'b01;
-                            update_tick = 4'b0;
-                    end                                          
                 end
             end
-            
-            RECV: begin
-                if(tick) begin
-                    if(tick_count == (TICK_WAIT - 1)) begin
-                        update_tick = 4'b0;
-                        update_buffer[bit_count] = rx_in; //almacena en la posición bit_count el valor ingresado
-                        if(bit_count == (WORD_SIZE - 1)) begin //completó la palabra
-                            update_state = STOP;  
-                            update_count = 3'b0;                         
+        end
+        
+        STOP: begin
+            if(in_tick) begin
+
+                next_tick_count = tick_count + 1;
+
+                if(tick_count == TICK_WAIT) begin
+                    next_tick_count = 4'b0;
+                    if(in_rx) begin
+                        if(bit_count == (STOP-1)) begin
+                            next_state = IDLE;
+                            rx_status = 3'b0; //ok                                
                         end
                         else begin
-                            update_count = bit_count + 1;                            
+                            next_bit_count = bit_count + 1;
                         end
-                    end
-                    else begin
-                        update_tick = tick_count + 1;
-                    end
+                    end                        
                 end
+                
+                if(in_rx == 0) begin
+                    next_state = ERROR;
+                    rx_status = 3'b10;
+                    next_tick_count = 4'b0;
+                end 
             end
-            
-            STOP: begin
-                if(tick) begin
-                    if(tick_count == (TICK_WAIT - 1)) begin
-                        update_tick = 4'b0;
-                        if(rx_in) begin
-                            if(bit_count == (STOP-1)) begin
-                                update_state = IDLE;
-                                rx_status = 3'b0; //ok                                
-                            end
-                            else begin
-                                update_count = bit_count + 1;
-                            end
-                        end                        
-                    end
-                    else begin
-                        update_tick = tick_count + 1;                     
-                    end
-                    
-                    if(rx_in == 0) begin
-                        rx_status = 3'b10;
-                        update_tick = 4'b0;
-                    end 
-                end
-            end
-       endcase  
+        end
+
+        ERROR: begin
+            next_buffer = 7'b0; //limpio el buffer
+            next_state = IDLE;
+            next_tick_count = 4'b0;
+            //podra prender un led? no se
+        end 
+
+    endcase  
     end
     
-    assign rx_status_out = rx_status;
-    assign data = buffer;
+    assign out_rx_status = rx_status;
+    assign out_data = current_buffer;
     
 endmodule

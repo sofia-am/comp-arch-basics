@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Authors: Amallo, Sofia - Raya Plasencia, Matias
 // Module Name: rx_module
-// Project Name: UART
+// Project Name: TP#2 UART - Arquitectura de Computadoras
+// Authors: Amallo, Sofia - Raya Plasencia, Matias
 // Target Devices: Basys3
 // Description: Finite state machine based UART receptor module
 // Revision 0.01 - File Created
@@ -17,7 +17,7 @@ module rx_module
     (
         input wire  in_clk, in_reset,
         input wire  in_rx, in_tick, 
-        output wire [2:0]out_rx_status, 
+        output wire [1:0]out_rx_status, 
         /* out_rx_status:
             00 -> OK
             01 -> RUIDO
@@ -37,7 +37,7 @@ localparam  [2:0]
     ERROR       =   3'b100;  
     
 //declaramos los registros que vamos a utilizar
-reg [2:0]   rx_status;
+reg [1:0]   rx_status;
 reg [2:0]   current_state, next_state;
 reg [3:0]   tick_count, next_tick_count; //con este registro contamos la cantidad de ticks que recibimos del baud rate generator
 reg [2:0]   bit_count, next_bit_count; //cant de bits que recibimos (max 8)
@@ -84,29 +84,25 @@ always @* begin //cualquier cambio en alguna de las entradas
         
         START: begin
             if(in_tick) begin
-
-                next_tick_count = tick_count + 1;
-
-                if(tick_count == (TICK_WAIT/2)) begin
+                if(tick_count == 4'd7) begin
                     next_state = RECV; 
                     next_tick_count = 4'b0;   //limpio el contador                    
                 end
-
-                if(in_rx) begin
+                else if(in_rx) begin
                     //si la entrada es 1 (no fue 0 por 7 ticks) entonces considero que fue ruido
                         next_state = ERROR;
                         rx_status = 3'b01;
                         next_tick_count = 4'b0;
-                end                                          
+                end                  
+                else begin
+                    next_tick_count = tick_count + 1;
+                end                   
             end
         end
         
         RECV: begin
             if(in_tick) begin
-
-                next_tick_count = tick_count + 1;
-
-                if(tick_count == TICK_WAIT) begin
+                if(tick_count == (TICK_WAIT - 1)) begin
                     next_tick_count = 4'b0;
                     next_buffer[bit_count] = in_rx; //almacena en la posici�n bit_count el valor ingresado
                     if(bit_count == (WORD_SIZE - 1)) begin //complet� la palabra
@@ -117,15 +113,15 @@ always @* begin //cualquier cambio en alguna de las entradas
                         next_bit_count = bit_count + 1;                            
                     end
                 end
+                else begin
+                    next_tick_count = tick_count + 1;
+                end
             end
         end
         
         STOP: begin
             if(in_tick) begin
-
-                next_tick_count = tick_count + 1;
-
-                if(tick_count == TICK_WAIT) begin
+                if(tick_count == (TICK_WAIT - 1)) begin
                     next_tick_count = 4'b0;
                     if(in_rx) begin
                         if(bit_count == (STOP-1)) begin
@@ -136,6 +132,9 @@ always @* begin //cualquier cambio en alguna de las entradas
                             next_bit_count = bit_count + 1;
                         end
                     end                        
+                end
+                else begin
+                    next_tick_count = tick_count + 1;
                 end
                 
                 if(in_rx == 0) begin
@@ -152,6 +151,12 @@ always @* begin //cualquier cambio en alguna de las entradas
             next_tick_count = 4'b0;
             //podra prender un led? no se
         end 
+        
+        default: begin
+            next_state = IDLE;
+            next_tick_count = 4'b0;
+            next_buffer = 7'b0;
+        end
 
     endcase  
     end

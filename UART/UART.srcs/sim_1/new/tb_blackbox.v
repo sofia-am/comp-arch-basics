@@ -1,24 +1,12 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/11/2022 10:07:44 AM
-// Design Name: 
 // Module Name: tb_blackbox
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
+// Project Name: TP#2 UART - Arquitectura de Computadoras
+// Authors: Amallo, Sofia - Raya Plasencia, Matias
+// Target Devices: Basys3
+// Description: Blackbox module testbench
 // Revision 0.01 - File Created
-// Additional Comments:
-// 
 //////////////////////////////////////////////////////////////////////////////////
-
 
 /*
     El módulo baud_generator genera los ticks cada 163 clocks como corresponde, 

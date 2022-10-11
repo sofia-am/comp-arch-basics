@@ -1,28 +1,14 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/11/2022 08:57:27 AM
-// Design Name: 
 // Module Name: baud_rate_generator
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
+// Project Name: TP#2 UART - Arquitectura de Computadoras
+// Authors: Amallo, Sofia - Raya Plasencia, Matias
+// Target Devices: Basys3
+// Description: Counts clocks coming from internal clock signal to generate 
+// a transmission/reception baud rate signal.
 // Revision 0.01 - File Created
-// Additional Comments:
-// 
 //////////////////////////////////////////////////////////////////////////////////
 
-/*
- * Baud rate generator to divide {CLOCK_RATE} (internal board clock) into
- * a rx/tx {BAUD_RATE} pair with rx oversamples by 16x.
- */
 module baud_rate_generator
     #(  //valores de la filmina
         parameter BAUD_RATE = 19200,

@@ -8,7 +8,6 @@
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module blackbox(
         input wire  in_clk,
         input wire  in_reset,

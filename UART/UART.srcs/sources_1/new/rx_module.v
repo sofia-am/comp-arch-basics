@@ -40,7 +40,7 @@ localparam  [2:0]
 reg [1:0]   rx_status;
 reg [2:0]   current_state, next_state;
 reg [3:0]   tick_count, next_tick_count; //con este registro contamos la cantidad de ticks que recibimos del baud rate generator
-reg [2:0]   bit_count, next_bit_count; //cant de bits que recibimos (max 8)
+reg [2:0]   bit_count = 3'b0, next_bit_count = 3'b0; //cant de bits que recibimos (max 8)
 reg [7:0]   current_buffer, next_buffer;
 
 always @(posedge in_clk, posedge in_reset)
@@ -104,10 +104,10 @@ always @* begin //cualquier cambio en alguna de las entradas
             if(in_tick) begin
                 if(tick_count == (TICK_WAIT - 1)) begin
                     next_tick_count = 4'b0;
-                    next_buffer[bit_count] = in_rx; //almacena en la posici�n bit_count el valor ingresado
-                    if(bit_count == (WORD_SIZE - 1)) begin //complet� la palabra
-                        next_state = STOP;  
-                        next_bit_count = 3'b0;                         
+                    next_buffer[bit_count] = in_rx; //almacena en la posicion bit_count el valor ingresado
+                    if(bit_count == (WORD_SIZE - 1)) begin //complete la palabra
+                        next_state = STOP;
+                        next_bit_count = 3'b0;                 
                     end
                     else begin
                         next_bit_count = bit_count + 1;                            

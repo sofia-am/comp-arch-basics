@@ -38,24 +38,86 @@ always begin
     in_clk = ~in_clk;
 end
 
-always @(in_clk) begin
+always begin
     in_reset = 1'b0;
-
-    for(j = 0; j<8; j=j+1)begin 
-      for(i = 0; i<164; i=i+1) begin //tick
-        #1 //si no le pongo esto explota
-        in_rx = 1'b0;
-      end  
-    end
     
+    /*
+    i = 0;
+    while(i<8)  begin
+        #163
+        in_rx = 1'b0; 
+        i=i+1;
+    end */
+    
+    #163
+    in_rx = 1'b0;
+    #163
+    in_rx = 1'b0;
+    #163
+    in_rx = 1'b0;
+    #163
+    in_rx = 1'b0;
+    #163
+    in_rx = 1'b0;
+    #163
+    in_rx = 1'b0;
+    #163
+    in_rx = 1'b0;
+     
+    
+    #163
     in_rx = 1'b1;
-    for(j = 0; j<16; j=j+1)begin 
-      for(i = 0; i<164; i=i+1) begin //tick
-        #1 
-        in_rx = 1'b1;
-      end  
-    end
-   
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    #163
+    in_rx = 1'b1;
+    
+    
+    
+       
+    #163
     $finish;
 end
 

@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 10 ns / 10ps
 //////////////////////////////////////////////////////////////////////////////////
 // Module Name: tb_blackbox
 // Project Name: TP#2 UART - Arquitectura de Computadoras
@@ -40,86 +40,41 @@ end
 
 always begin
     in_reset = 1'b0;
+     /*   
+    for(i=0; i<8;i=i+1)begin
+        #326
+        in_rx = 1'b0;
+    end
+    */
+    #326
+    in_rx = 1'b0;
+    #326
+    in_rx = 1'b0;
+    #326
+    in_rx = 1'b0;
+    #326
+    in_rx = 1'b0;
+    #326
+    in_rx = 1'b0;
+    #326
+    in_rx = 1'b0;
+    #326
+    in_rx = 1'b0;
     
-    /*
-    i = 0;
-    while(i<8)  begin
-        #163
-        in_rx = 1'b0; 
-        i=i+1;
-    end */
+    for(j=0; j<128;j=j+1)begin
+        #326
+        in_rx = 1'b1;
+    end
     
-    #163
-    in_rx = 1'b0;
-    #163
-    in_rx = 1'b0;
-    #163
-    in_rx = 1'b0;
-    #163
-    in_rx = 1'b0;
-    #163
-    in_rx = 1'b0;
-    #163
-    in_rx = 1'b0;
-    #163
-    in_rx = 1'b0;
-     
-    
-    #163
+    #326
     in_rx = 1'b1;
-    #163
+    #326
     in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    #163
-    in_rx = 1'b1;
-    
-    
-    
-       
-    #163
+   
     $finish;
+
 end
+
 
 blackbox blackbox_instance(
     .in_clk(in_clk),

@@ -24,7 +24,7 @@ integer max_count = (CLOCK_RATE/(BAUD_RATE*16)); // ~163
 integer clk_count = 0;
 reg tick = 1'b0; 
 
-always @(posedge in_clk, posedge in_reset) begin
+always @(posedge in_clk) begin
     if (in_reset) begin
         tick = 1'b0;
         clk_count = 0;

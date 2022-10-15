@@ -43,7 +43,8 @@ reg [3:0]   tick_count, next_tick_count; //con este registro contamos la cantida
 reg [2:0]   bit_count = 3'b0, next_bit_count = 3'b0; //cant de bits que recibimos (max 8)
 reg [7:0]   current_buffer, next_buffer;
 
-always @(posedge in_clk, posedge in_reset)
+//circuito secuencial
+always @(posedge in_clk) begin
 //en este bloque se actualiza el estado/se realiza un reset.
     if(in_reset)   
         begin   
@@ -59,15 +60,17 @@ always @(posedge in_clk, posedge in_reset)
             bit_count <= next_bit_count;
             current_buffer <= next_buffer;
         end
+end
 
+//circuito combinacional
 always @* begin //cualquier cambio en alguna de las entradas
-
-// "guardo" el estado de los registros, los voy a pisar adentro de los case.
+/*
+// valuamos las variables para evitar la indeterminación, con el case default no hacen falta
     next_state = current_state;
     next_bit_count = bit_count;
     next_buffer = current_buffer;
     next_tick_count = tick_count;
-
+*/
     case(current_state)
 
         IDLE: begin 
@@ -104,6 +107,7 @@ always @* begin //cualquier cambio en alguna de las entradas
             if(in_tick) begin
                 if(tick_count == (TICK_WAIT - 1)) begin
                     next_tick_count = 4'b0;
+                    rx_status = 2'b0;
                     next_buffer[bit_count] = in_rx; //almacena en la posicion bit_count el valor ingresado
                     if(bit_count == (WORD_SIZE - 1)) begin //complete la palabra
                         next_state = STOP;
@@ -156,6 +160,7 @@ always @* begin //cualquier cambio en alguna de las entradas
             next_state = IDLE;
             next_tick_count = 4'b0;
             next_buffer = 7'b0;
+            rx_status = 2'b11; //unknown
         end
 
     endcase  

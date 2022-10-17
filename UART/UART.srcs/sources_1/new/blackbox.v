@@ -11,12 +11,15 @@
 module blackbox(
         input wire  in_clk,
         input wire  in_reset,
-        input wire  in_rx,
+        //input wire  in_rx,
+        
+        input wire  tx_enable,
         output wire [1:0]out_rx_status, 
         output wire [7:0]out_data 
     );
     
-wire tick;
+wire    tick;
+wire    in_rx;
 
 baud_rate_generator baud_generator(
     .in_clk(in_clk),
@@ -24,7 +27,7 @@ baud_rate_generator baud_generator(
     .out_tick(tick)
 );
 
-rx_module receptor(
+rx_module receiver(
     .in_clk(in_clk),
     .in_reset(in_reset),
     .in_rx(in_rx),
@@ -33,4 +36,9 @@ rx_module receptor(
     .out_data(out_data)
 );
 
+tx_module transmitter(
+    .in_clk(in_clk),
+    .in_reset(in_reset)
+    //completar
+);
 endmodule

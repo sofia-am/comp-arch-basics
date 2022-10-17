@@ -4,7 +4,7 @@
 // Project Name: TP#2 UART - Arquitectura de Computadoras
 // Authors: Amallo, Sofia - Raya Plasencia, Matias
 // Target Devices: Basys3
-// Description: Finite state machine based UART receptor module
+// Description: Finite state machine based UART receiver module
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -75,6 +75,7 @@ always @* begin //cualquier cambio en alguna de las entradas
 
         IDLE: begin 
             next_tick_count = 0;
+            rx_status = 2'b11;
             if(in_rx) begin
                 next_state = IDLE; //mientras no me llegue un 0, me quedo en IDLE
                 //un poco redundante igual porque si no cambia el estado entonces next_state == current_state
@@ -87,6 +88,7 @@ always @* begin //cualquier cambio en alguna de las entradas
         
         START: begin
             if(in_tick) begin
+                rx_status = 2'b11;
                 if(tick_count == 4'd7) begin
                     next_state = RECV; 
                     next_tick_count = 4'b0;   //limpio el contador                    
@@ -107,7 +109,7 @@ always @* begin //cualquier cambio en alguna de las entradas
             if(in_tick) begin
                 if(tick_count == (TICK_WAIT - 1)) begin
                     next_tick_count = 4'b0;
-                    rx_status = 2'b0;
+                    //rx_status = 2'b0;
                     next_buffer[bit_count] = in_rx; //almacena en la posicion bit_count el valor ingresado
                     if(bit_count == (WORD_SIZE - 1)) begin //complete la palabra
                         next_state = STOP;

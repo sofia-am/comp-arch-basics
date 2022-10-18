@@ -52,18 +52,20 @@ reg [2:0]next_state, current_state;
 
 always @(posedge in_clk) begin
     if(in_reset) begin
-        interface_status = 2'b0;
-        tx_data = 8'b0;
-        dato_a = 8'b0;
-        dato_b = 8'b0;
-        opcode = 8'b0;
-        contador = 0;
+        interface_status <= 2'b0;
+        tx_data <= 8'b0;
+        dato_a <= 8'b0;
+        dato_b <= 8'b0;
+        opcode <= 8'b0;
+        contador <= 0;
+    end 
+    else begin
+        current_state <= next_state;
     end
-    //necesito una máquina de estados para esto? creo que no.
 end
 
-/* posible caso en el que cambie cualquier otra variable y el bit de ok del receptor se 
-mantenga igual, en ese caso seguiríamos conmutando de estado cuando no es correcto.
+/*  - es posible caso en el que ingrese al bloque always antes de cambiar el bit de status del receptor?
+    - puede ser que se pregunte por el estado de la alu antes de setear los bits de salida?
 */
 
 always @* begin
@@ -96,7 +98,7 @@ always @* begin
                 dato_b = aux_dato_b;
                 opcode = aux_opcode;
                 //alu enable 
-                if(!in_alu_status) begin
+                if(!in_alu_status) begin  //in_alu_status == 0 cuando termina la operación sin errores
                     tx_data = in_result;
                     //tx_enable
                     if(in_tx_status) begin
@@ -105,11 +107,7 @@ always @* begin
                 end
             end
         endcase
-        //in_alu_status == 0 cuando termina la operación sin errores
     //end
-    if(!in_alu_status)begin
-        tx_data = in_result;
-    end 
 end
 
 assign  out_dato_a = dato_a;

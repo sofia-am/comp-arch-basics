@@ -131,8 +131,8 @@ always @* begin //cualquier cambio en alguna de las entradas
                     next_tick_count = 4'b0;
                     if(in_rx) begin
                         if(bit_count == (STOP-1)) begin
-                            next_state = IDLE;
-                            rx_status = 3'b0; //ok                                
+                            rx_status = 3'b0; //ok  
+                            next_state = IDLE;                             
                         end
                         else begin
                             next_bit_count = bit_count + 1;

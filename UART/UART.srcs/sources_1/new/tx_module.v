@@ -14,7 +14,8 @@ module tx_module
                     STOP_SIZE = 1,
                     TICK_WAIT = 16
     )(
-        input wire  tx_enable, in_reset, in_clk,
+        input wire  in_reset, in_clk,
+        input wire  tx_enable,        
         input wire  in_tx, in_tick,
         input wire  [7:0]data,
         output wire [1:0]out_tx_status,

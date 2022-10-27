@@ -11,15 +11,22 @@
 module blackbox(
         input wire  in_clk,
         input wire  in_reset,
-        //input wire  in_rx,
+        input wire  in_rx,
         
-        input wire  tx_enable,
-        output wire [1:0]out_rx_status, 
-        output wire [7:0]out_data 
+        output wire [1:0]out_tx_status, 
+        output wire tx_bit
     );
     
 wire    tick;
-wire    in_rx;
+wire    [7:0]rx_data;
+wire    [7:0]tx_data;
+wire    [1:0]interface_status;
+wire    [7:0]result;
+wire    alu_status;
+wire    [7:0]dato_a;
+wire    [7:0]dato_b;
+wire    [7:0]opcode;
+wire    tx_enable;
 
 baud_rate_generator baud_generator(
     .in_clk(in_clk),
@@ -33,12 +40,39 @@ rx_module receiver(
     .in_rx(in_rx),
     .in_tick(tick),
     .out_rx_status(out_rx_status),
-    .out_data(out_data)
+    .out_data(rx_data)
 );
 
 tx_module transmitter(
+    .in_reset(in_reset),
     .in_clk(in_clk),
-    .in_reset(in_reset)
-    //completar
+    .tx_enable(tx_enable),
+    .data(tx_data),
+    .out_tx_status(out_tx_status),
+    .out_tx_bit(tx_bit)
 );
+
+interface interface_instance(
+    .in_clk(in_clk),
+    .in_reset(in_reset),
+    .in_rx_status(out_rx_status),
+    .in_rx_data(rx_data),
+    .out_interface_status(interface_status),
+    .out_tx_enable(tx_enable),
+    .out_tx_data(tx_data),
+    .in_result(result),
+    .in_alu_status(alu_status),
+    .out_dato_a(dato_a),
+    .out_dato_b(dato_b),
+    .out_opcode(opcode)
+);
+
+alu alu_instance(
+    .data_a(dato_a),
+    .data_b(dato_b),
+    .opcode(opcode),
+    //.clock(in_clk),
+    .o_result(result)
+);
+
 endmodule

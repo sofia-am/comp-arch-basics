@@ -18,6 +18,7 @@ module interface
         input wire  [1:0]in_tx_status,
         output wire [1:0]out_interface_status,
         output wire [7:0]out_tx_data,
+        output wire out_tx_enable,
         //ALU
         input wire  [7:0]in_result,
         input wire  in_alu_status,
@@ -37,7 +38,8 @@ localparam
     DATO_B  =   3'b010,
     OPCODE  =   3'b011,
     COMPUTE =   3'b100;
-    
+
+reg tx_enable;   
 reg [1:0]interface_status;
 reg [7:0]tx_data;
 reg [7:0]dato_a;
@@ -100,7 +102,7 @@ always @* begin
                 //alu enable 
                 if(!in_alu_status) begin  //in_alu_status == 0 cuando termina la operación sin errores
                     tx_data = in_result;
-                    //tx_enable
+                    tx_enable = 1'b1;
                     if(in_tx_status) begin
                         next_state = IDLE;
                     end
@@ -110,6 +112,8 @@ always @* begin
     //end
 end
 
+assign  out_tx_enable = tx_enable;
+assign  out_tx_data = tx_data;
 assign  out_dato_a = dato_a;
 assign  out_dato_b = dato_b;
 assign  out_opcode = opcode;

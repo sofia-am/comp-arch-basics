@@ -39,8 +39,8 @@ localparam
     OPCODE  =   3'b011,
     COMPUTE =   3'b100;
 
-reg tx_enable;   
 reg [1:0]interface_status;
+reg tx_enable;   
 reg [7:0]tx_data;
 reg [7:0]dato_a;
 reg [7:0]dato_b;
@@ -55,6 +55,8 @@ reg [2:0]next_state, current_state;
 always @(posedge in_clk) begin
     if(in_reset) begin
         interface_status <= 2'b0;
+        next_state <= IDLE;
+        tx_enable <= 1'b0;
         tx_data <= 8'b0;
         dato_a <= 8'b0;
         dato_b <= 8'b0;
@@ -77,23 +79,27 @@ always @* begin
             IDLE: begin
                 if(!in_rx_status) begin
                     next_state = DATO_A;
+                    interface_status = 2'b00;
                 end
             end
             DATO_A: begin
                 aux_dato_a = in_rx_data;
                 if(!in_rx_status) begin  
                     next_state = DATO_B;
+                    interface_status = 2'b01;
                 end
             end
             DATO_B: begin
                 aux_dato_b = in_rx_data;
                 if(!in_rx_status) begin
                     next_state = OPCODE;
+                    interface_status = 2'b10;
                 end
             end
             OPCODE: begin
                 aux_opcode = in_rx_data;
                 next_state = COMPUTE;
+                interface_status = 2'b11;
             end
             COMPUTE: begin
                 dato_a = aux_dato_a;
@@ -108,11 +114,17 @@ always @* begin
                     end
                 end
             end
+            default: begin     
+                next_state = IDLE;
+                tx_enable = 1'b0;
+                
+            end 
         endcase
     //end
 end
 
 assign  out_tx_enable = tx_enable;
+assign  out_interface_status = interface_status;
 assign  out_tx_data = tx_data;
 assign  out_dato_a = dato_a;
 assign  out_dato_b = dato_b;

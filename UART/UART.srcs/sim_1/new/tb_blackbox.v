@@ -40,37 +40,52 @@ end
 
 always begin
     in_reset = 1'b0;
-     /*   
-    for(i=0; i<8;i=i+1)begin
-        #326
-        in_rx = 1'b0;
-    end
+    
+    in_rx = 1'b0;
+    #512
+    in_rx = 1'b0;
+    #512
+    in_rx = 1'b0;
+    #512
+    in_rx = 1'b0;
+    #512
+    in_rx = 1'b0;
+    #512
+    in_rx = 1'b0;
+    #512
+    in_rx = 1'b0;
+    #512
+ 
+    // DatoA + Stop
+    in_rx = 1'b1;
+    #73728
+     // 326 * 16 * 9
+    /*
+    // Start
+    in_rx = 1'b0;
+    #2282 // 326 * 7
+
+    // DatoB + Stop
+    in_rx = 1'b0;
+    #31296 // 326 * 16 * 6
+    in_rx = 1'b1;
+    #5216 // 326 * 16
+    in_rx = 1'b0;
+    #10432 // 326 * 16 * 2
+    
+    // Start
+    in_rx = 1'b0;
+    #2282 // 326 * 7
+    
+    // Opcode + Stop
+    in_rx = 1'b1;
+    #5216 // 326 * 16
+    in_rx = 1'b0;
+    #36512 // 326 * 16 * 7
+    in_rx = 1'b1;
+    #5216 // 326 * 16
     */
-    #326
-    in_rx = 1'b0;
-    #326
-    in_rx = 1'b0;
-    #326
-    in_rx = 1'b0;
-    #326
-    in_rx = 1'b0;
-    #326
-    in_rx = 1'b0;
-    #326
-    in_rx = 1'b0;
-    #326
-    in_rx = 1'b0;
     
-    for(j=0; j<128;j=j+1)begin
-        #326
-        in_rx = 1'b1;
-    end
-    
-    #326
-    in_rx = 1'b1;
-    #326
-    in_rx = 1'b1;
-   
     $finish;
 
 end
@@ -80,8 +95,8 @@ blackbox blackbox_instance(
     .in_clk(in_clk),
     .in_reset(in_reset),
     .in_rx(in_rx),
-    .out_rx_status(out_rx_status),
-    .out_data(out_data) 
+    .out_tx_status(out_tx_status),
+    .tx_bit(tx_bit) 
 );
 
 endmodule

@@ -12,7 +12,7 @@ module blackbox(
         input wire  in_clk,
         input wire  in_reset,
         input wire  in_rx,
-        
+        output wire [1:0]out_interface_status,
         output wire [1:0]out_tx_status, 
         output wire tx_bit
     );
@@ -20,13 +20,13 @@ module blackbox(
 wire    tick;
 wire    [7:0]rx_data;
 wire    [7:0]tx_data;
-wire    [1:0]interface_status;
 wire    [7:0]result;
 wire    alu_status;
 wire    [7:0]dato_a;
 wire    [7:0]dato_b;
 wire    [7:0]opcode;
 wire    tx_enable;
+wire    [1:0]out_rx_status;
 
 baud_rate_generator baud_generator(
     .in_clk(in_clk),
@@ -57,7 +57,7 @@ interface interface_instance(
     .in_reset(in_reset),
     .in_rx_status(out_rx_status),
     .in_rx_data(rx_data),
-    .out_interface_status(interface_status),
+    .out_interface_status(out_interface_status),
     .out_tx_enable(tx_enable),
     .out_tx_data(tx_data),
     .in_result(result),

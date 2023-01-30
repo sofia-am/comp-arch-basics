@@ -41,7 +41,7 @@ reg carry; //si no se define nada, es de 1 bit
 reg zero;
 reg signo;
  
-always @(posedge clock) begin
+always @(*) begin
 //always @(data_a or data_b or opcode) begin   
 
     carry = 1'b0;

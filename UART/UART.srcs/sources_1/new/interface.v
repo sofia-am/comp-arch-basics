@@ -73,7 +73,7 @@ end
 */
 
 always @* begin
-    //in_rx_status == 0 cuando recibió los 8 bits de datos + el stop bit sin errores
+    //in_rx_status == 0 cuando recibiï¿½ los 8 bits de datos + el stop bit sin errores
    // if(!in_rx_status)begin
         case(current_state)
             IDLE: begin
@@ -106,7 +106,7 @@ always @* begin
                 dato_b = aux_dato_b;
                 opcode = aux_opcode;
                 //alu enable 
-                if(!in_alu_status) begin  //in_alu_status == 0 cuando termina la operación sin errores
+                if(!in_alu_status) begin  //in_alu_status == 0 cuando termina la operaciï¿½n sin errores
                     tx_data = in_result;
                     tx_enable = 1'b1;
                     if(in_tx_status) begin

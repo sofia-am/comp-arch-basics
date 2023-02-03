@@ -1,3 +1,13 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Module Name: fifo
+// Project Name: TP#2 UART - Arquitectura de Computadoras
+// Authors: Amallo, Sofia - Raya Plasencia, Matias
+// Target Devices: Basys3
+// Description: circular FIFO module
+// Revision 0.01 - File Created
+//////////////////////////////////////////////////////////////////////////////////
+
 module fifo
     #(
         parameter   B = 8, // number of bits per word
@@ -84,4 +94,11 @@ module fifo
 
 endmodule
 
-// 
+/* The code is divided into a register file and a FIFO controller. The controller consists of 
+two pointers and two status FFs. Its next-state logic examines the wr and rd signals and takes 
+actions accordingly. For example, let us consider the " 10" case, which implies that only a 
+write operation occurs. The status FF is checked first to ensure that the buffer is not full. 
+If this condition is met, we advance the write pointer by one position and clear the empty 
+status FF. Storing one extra word to the buffer may make it full. This happens if the new 
+write pointer "catches" the read pointer, which is expressed by the w-ptr-succ==r-ptr-reg 
+expression. */

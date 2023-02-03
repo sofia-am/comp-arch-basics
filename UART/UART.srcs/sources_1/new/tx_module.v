@@ -10,109 +10,116 @@
 
 module tx_module
     #( 
-        parameter   WORD_SIZE = 8,
-                    STOP_SIZE = 1,
-                    TICK_WAIT = 16
+        parameter   DBIT = 8, // data bits
+                    SB_TICK = 16 // ticks for stop bits
     )(
-        input wire  in_reset, in_clk,
-        input wire  tx_enable,        
-        input wire  in_tx, in_tick,
-        input wire  [7:0]data,
-        output wire [1:0]out_tx_status,
-        output wire out_tx_bit
+        input wire  clk, reset,
+        input wire  tx_start, s_tick,   
+        input wire  [7:0]din,
+        output wire tx_done_tick_wire,
+        output wire tx
     );
     
-localparam [2:0]
-    IDLE    =   3'b000,
-    START   =   3'b001,
-    SEND    =   3'b010, //sending
-    STOP    =   3'b011;
-    //ERROR   =   3'b100;  
+    localparam [1:0]
+        IDLE    =   3'b000,
+        START   =   3'b001,
+        SEND    =   3'b010, //sending
+        STOP    =   3'b011;
+
+    reg tx_reg , tx_next, tx_done_tick;     
+    reg [1:0]   state_reg, state_next;
+    reg [2:0]   n_reg, n_next; 
+    reg [3:0]   s_reg , s_next; 
+    reg [7:0]   b_reg , b_next;     
+
+    always @(posedge clk, posedge reset) begin
+        if(reset)   
+            begin   
+                state_reg <= IDLE;
+                s_reg <= 0;
+                n_reg <= 0;
+                b_reg <= 0;
+                tx_reg <= 1'b1;
+            end
+        else
+            begin
+                state_reg <= state_next;
+                s_reg <= s_next;
+                n_reg <= n_next; 
+                b_reg <= b_next;
+                tx_reg <= tx_next;
+            end
+    end
+
+    always @(*) begin
+        state_next = state_reg;
+        tx_done_tick = 1'b0;
+        s_next = s_reg;
+        n_next = n_reg;
+        b_next = b_reg;
+        tx_next = tx_reg;
+
+        case(state_reg)
+            IDLE: begin
+                tx_next = 1'b1;
+                if(tx_start) begin
+                    state_next = START;
+                    s_next = 0;
+                    b_next = din;
+                end
+            end
+            
+            START: begin
+                tx_next = 1'b0;
+                if(s_tick) begin
+                    if(s_reg == 15) begin
+                            state_next = DATA;
+                            s_next = 0;
+                            n_next = 0;
+                        end
+                    else begin
+                        s_next = s_reg + 1;
+                    end
+                end
+            end
+            
+            DATA: begin
+                tx_next = b_reg[0];
+                if(s_tick) begin
+                    if(s_reg == 4'b1111) begin
+                        s_next = 0;
+                        b_next = b_reg >> 1;
+                        if(n_reg == (DBIT - 1)) begin
+                            state_next = STOP;
+                        end
+                        else begin
+                            n_next = n_reg + 1;
+                        end
+                    end
+                    else begin
+                        s_next = s_reg + 1;
+                    end
+                end
+            end
+
+            STOP: begin
+                tx_next = 1'b1;
+                if(s_tick) begin
+                    if(s_reg == SB_TICK) begin
+                        state_next = IDLE;
+                        tx_done_tick = 1'b1;
+                    end
+                    else begin
+                        s_next = s_reg + 1;
+                    end
+                end
+            end
+            
+        endcase
     
-reg [1:0]   tx_status;
-reg [2:0]   current_state, next_state;
-reg [3:0]   tick_count, next_tick_count; //con este registro contamos la cantidad de ticks que recibimos del baud rate generator
-reg [2:0]   bit_count = 3'b0, next_bit_count = 3'b0; //cant de bits que enviamos (max 8)
-reg         tx_bit, next_tx_bit;
-
-always @(posedge in_clk) begin
-    if(in_reset)
-        begin
-            current_state <= IDLE;
-            tx_bit = 1'b1;
-            tick_count <= 4'b0;
-            bit_count <= 3'b0;
-        end
-    else if(tx_enable)   
-        begin
-            current_state <= next_state;
-            tick_count <= next_tick_count;
-            bit_count <= next_bit_count;
-            tx_bit <= next_tx_bit;
-        end
-end
-
-always @* begin
-    case(current_state)
-
-        IDLE: begin
-            next_tick_count = 4'b0;
-            next_bit_count = 3'b0;
-            if(tx_enable) next_state = START;
-            else next_state = IDLE;
-        end
-
-        START: begin
-            if(in_tick) begin
-                next_tx_bit = 1'b0; //envio un 0 como bit de start
-                if(tick_count == (TICK_WAIT - 1)) begin
-                    next_state = SEND;
-                    next_tick_count = 4'b0;           
-                end
-                else next_tick_count = tick_count + 1;
-            end
-        end
-
-        SEND: begin
-            if(in_tick) begin
-                next_tx_bit = data[bit_count];
-                if(tick_count == (TICK_WAIT - 1)) begin
-                    next_tick_count = 4'b0;
-                    if(bit_count == (WORD_SIZE -1)) begin
-                        next_state = STOP;
-                        next_bit_count = 3'b0;
-                    end
-                    else next_bit_count = bit_count + 1;
-                end
-                else next_tick_count = tick_count + 1;
-            end
-        end
-
-        STOP: begin
-            if(in_tick) begin
-                next_tx_bit = 1'b1;
-                if(tick_count == (TICK_WAIT - 1)) begin
-                    next_tick_count = 4'b0;
-                    if(bit_count == (STOP - 1)) begin
-                        next_state = IDLE;
-                        tx_status = 3'b0;
-                    end
-                    else next_bit_count = bit_count + 1;
-                end
-                else next_tick_count = tick_count + 1;
-            end
-        end
-
-        default: begin
-            next_state = IDLE;
-            next_bit_count = 3'b0;
-            next_tick_count = 4'b0;
-            tx_bit = 1'b1;
-        end
-    endcase
-end
-
-assign out_tx_bit = tx_bit;
-assign out_tx_status = tx_status;
+    end
+    // salida
+    assign tx = tx_reg;
+    assign tx_done_tick_wire = tx_done_tick;
 
 endmodule

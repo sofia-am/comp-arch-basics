@@ -9,166 +9,113 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module rx_module
-    #( 
-        parameter   WORD_SIZE = 8,
-                    STOP_SIZE = 1,
-                    TICK_WAIT = 16
+    #(
+        parameter   DBIT = 8, // data bits
+                    SB_TICK = 16 // ticks for stop bits
     )
     (
-        input wire  in_clk, in_reset,
-        input wire  in_rx, in_tick, 
-        output wire [1:0]out_rx_status, 
-        /* out_rx_status:
-            00 -> OK
-            01 -> RUIDO
-            10 -> STOP
-            11 -> UNKNOWN
-        */
-        output wire [7:0]out_data 
+        input wire  clk, reset,
+        input wire  rx, s_tick,
+        output wire rx_done_tick_wire,
+        output wire [DBIT-1:0]dout
     );
     
 
-// declaramos los distintos estados
-localparam  [2:0]
-    IDLE        =   3'b000,
-    START       =   3'b001,
-    RECV        =   3'b010, //recieving
-    STOP        =   3'b011,
-    ERROR       =   3'b100;  
+// declaramos los distintos estados simbolicos
+localparam  [1:0]
+    IDLE    = 2'b00, 
+    START   = 2'b01, 
+    DATA    = 2'b10, 
+    STOP    = 2'b11;
+      
     
 //declaramos los registros que vamos a utilizar
-reg [1:0]   rx_status;
-reg [2:0]   current_state, next_state;
-reg [3:0]   tick_count, next_tick_count; //con este registro contamos la cantidad de ticks que recibimos del baud rate generator
-reg [2:0]   bit_count = 3'b0, next_bit_count = 3'b0; //cant de bits que recibimos (max 8)
-reg [7:0]   current_buffer, next_buffer;
+reg [1:0]   state_reg, state_next;
+reg [3:0]   s_reg, s_next; // s register keeps track of the number of sampling ticks and counts to 7 in the start state
+reg [2:0]   n_reg, n_next; // n register keeps track of the number of data bits received in the data state
+reg [7:0]   b_reg, b_next; // the retrieved bits are shifted into and reassembled in the b register
+reg         rx_done_tick;
 
 //circuito secuencial
-always @(posedge in_clk) begin
+always @(posedge clk, posedge reset) begin
 //en este bloque se actualiza el estado/se realiza un reset.
-    if(in_reset)   
+    if(reset)   
         begin   
-            current_state <= IDLE;
-            tick_count <= 4'b0;
-            bit_count <= 3'b0;
-            current_buffer <= 8'b0;    
+            state_reg <= IDLE;
+            s_reg <= 0;
+            n_reg <= 0;
+            b_reg <= 0;    
         end
     else
         begin
-            current_state <= next_state;
-            tick_count <= next_tick_count;
-            bit_count <= next_bit_count;
-            current_buffer <= next_buffer;
+            state_reg <= state_next;
+            s_reg <= s_next;
+            n_reg <= n_next; 
+            b_reg <= b_next;
         end
 end
 
 //circuito combinacional
-always @* begin //cualquier cambio en alguna de las entradas
-/*
-// valuamos las variables para evitar la indeterminación, con el case default no hacen falta
-    next_state = current_state;
-    next_bit_count = bit_count;
-    next_buffer = current_buffer;
-    next_tick_count = tick_count;
-*/
-    case(current_state)
+always @* begin //cualquier cambio en alguna de las entradas del modulo, se ejecuta el bloque de codigo
 
-        IDLE: begin 
-            next_tick_count = 0;
-            rx_status = 2'b11;
-            if(in_rx) begin
-                next_state = IDLE; //mientras no me llegue un 0, me quedo en IDLE
-                //un poco redundante igual porque si no cambia el estado entonces next_state == current_state
+    state_next = state_reg;
+    rx_done_tick = 1'b0;
+    s_next = s_reg;
+    n_next = n_reg;
+    b_next = b_reg;
+
+    case(state_reg)
+        IDLE: begin
+            if(~rx) begin
+                state_next = START;
+                s_next = 0;
             end
-            else begin 
-                next_state = START; 
-                //no se cambia de estado hasta que no haya un flanco de clock
-            end 
         end
-        
         START: begin
-            if(in_tick) begin
-                rx_status = 2'b11;
-                if(tick_count == 4'd7) begin
-                    next_state = RECV; 
-                    next_tick_count = 4'b0;   //limpio el contador                    
+            if(s_tick) begin
+                if(s_reg == 4'b1111) begin
+                    state_next = DATA;
+                    s_next = 0;
+                    n_next = 0;
                 end
-                else if(in_rx) begin
-                    //si la entrada es 1 (no fue 0 por 7 ticks) entonces considero que fue ruido
-                        next_state = ERROR;
-                        rx_status = 3'b01;
-                        next_tick_count = 4'b0;
-                end                  
                 else begin
-                    next_tick_count = tick_count + 1;
-                end                   
+                    s_next = s_reg + 1;
+                end
             end
         end
-        
-        RECV: begin
-            if(in_tick) begin
-                if(tick_count == (TICK_WAIT - 1)) begin
-                    next_tick_count = 4'b0;
-                    //rx_status = 2'b0;
-                    next_buffer[bit_count] = in_rx; //almacena en la posicion bit_count el valor ingresado
-                    if(bit_count == (WORD_SIZE - 1)) begin //complete la palabra
-                        next_state = STOP;
-                        next_bit_count = 3'b0;                 
+        DATA: begin
+            if(s_tick) begin
+                if(s_reg == SB_TICK-1) begin
+                    s_next = 0;
+                    b_next = {rx, b_reg[7:1]};
+                    if(n_reg == DBIT-1) begin
+                        state_next = STOP;
                     end
                     else begin
-                        next_bit_count = bit_count + 1;                            
+                        n_next = n_reg + 1;
                     end
                 end
                 else begin
-                    next_tick_count = tick_count + 1;
+                   s_next = s_reg + 1;
                 end
             end
         end
-        
         STOP: begin
-            if(in_tick) begin
-                if(tick_count == (TICK_WAIT - 1)) begin
-                    next_tick_count = 4'b0;
-                    if(in_rx) begin
-                        if(bit_count == (STOP_SIZE-1)) begin
-                            rx_status = 3'b0; //ok  
-                            next_state = IDLE;                             
-                        end
-                        else begin
-                            next_bit_count = bit_count + 1;
-                        end
-                    end                        
+            if(s_tick) begin
+                if(s_reg == (SB_TICK-1)) begin
+                    state_next = IDLE;
+                    rx_done_tick = 1'b1;
                 end
                 else begin
-                    next_tick_count = tick_count + 1;
+                    s_next = s_reg + 1;
                 end
-                
-                if(in_rx == 0) begin
-                    next_state = ERROR;
-                    rx_status = 3'b10;
-                    next_tick_count = 4'b0;
-                end 
             end
         end
-
-        ERROR: begin
-            next_buffer = 7'b0; //limpio el buffer
-            next_state = IDLE;
-            next_tick_count = 4'b0;
-            //podra prender un led? no se
-        end 
-        
-        default: begin
-            next_state = IDLE;
-            next_tick_count = 4'b0;
-            next_buffer = 7'b0;
-            rx_status = 2'b11; //unknown
-        end
-
     endcase  
     end
     
-    assign out_rx_status = rx_status;
-    assign out_data = current_buffer;
-    
+    // salida
+    assign dout = b_reg;
+    assign rx_done_tick_wire = rx_done_tick;
+
 endmodule
